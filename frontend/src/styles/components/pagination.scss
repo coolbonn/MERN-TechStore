@@ -1,0 +1,28 @@
+.pagination {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.pagination b {
+  margin-left: 15px;
+  background-color: #00b377;
+  color: #ddd;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pagination b:hover {
+  background-color: #00f1a1;
+  color: rgb(24, 23, 23);
+}
+
+.active > b {
+  background-color: #003d29;
+  color: #ddd;
+}
+
+.active > b:hover {
+  background-color: #003d29;
+  color: #ddd;
+}

@@ -1,0 +1,90 @@
+.oauthUser_container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.oauthUser_container .content {
+  width: 100%;
+  background-color: #ddd;
+  padding: 15px;
+  box-shadow: 3px 3px 8px black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.oauthUser_container .content img {
+  width: 100px;
+  border-radius: 50px;
+  border: 2px solid white;
+  box-shadow: 0 0 8px rgb(255, 255, 255);
+}
+
+.oauthUser_container .oauthUser_table {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.oauthUser_container table {
+  display: table;
+  border-spacing: 15px;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  margin-top: 40px;
+}
+
+.oauthUser_container table thead {
+  border-bottom: 1px solid grey;
+}
+
+.oauthUser_container table tbody tr td {
+  padding: 20px;
+  border-bottom: 1px solid grey;
+}
+
+.oauthUser_container table tbody tr td .fa-times {
+  color: red;
+}
+
+.oauthUser_container table tbody tr td .fa-trash-alt {
+  color: rgb(194, 0, 0);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.oauthUser_container table tbody tr td .fa-trash-alt:hover {
+  color: rgb(255, 0, 0);
+}
+
+.oauthUser_container h2 {
+  text-align: center;
+}
+
+.oauthUser_container .link {
+  margin-left: 20px;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s ease-in-out;
+}
+
+.oauthUser_container .link:hover {
+  color: rgb(0, 114, 207);
+}
+
+.oauth_prof_info {
+  background: #00ad48;
+  padding: 40px;
+  width: 30%;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%);
+  text-align: center;
+  color: #eee;
+  border-radius: 15px;
+  box-shadow: 0 0 8px #00ad48;
+}

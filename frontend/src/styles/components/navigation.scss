@@ -1,0 +1,98 @@
+header {
+  background: rgba(209, 206, 206, 0.5);
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid rgb(20, 19, 19);
+  box-shadow: 2px 0 10px rgb(32, 32, 32);
+}
+
+.logo {
+  padding: 15px;
+  margin-left: 20px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: small;
+}
+
+.page-links .active,
+.auth-user_btn .active,
+.fa-shopping-cart .active {
+  color: rgb(0, 0, 0);
+  font-weight: 800;
+}
+
+.page-links span {
+  margin-left: 70px;
+  font-size: 1.1rem;
+  color: rgb(27, 27, 27);
+  text-decoration: none;
+}
+
+.page-links span:hover {
+  color: rgb(27, 27, 27);
+  font-weight: 800;
+}
+
+.auth-user_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.fa-shopping-cart {
+  font-size: 1.1rem;
+  color: rgb(66, 66, 66);
+  margin-right: 20px;
+}
+
+.auth-user_btn span:hover,
+.fa-shopping-cart:hover {
+  color: rgb(0, 0, 0);
+  font-weight: 800;
+}
+
+.auth-btn {
+  margin-right: 10px;
+  border: 2px solid rgb(1, 170, 1);
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.auth-btn:hover {
+  background: rgb(39, 39, 39);
+  box-shadow: 0 0 3px rgb(0, 236, 0);
+}
+
+.auth-btn:hover .signin,
+.auth-btn:hover .signup,
+.auth-btn:hover .divider {
+  color: rgb(236, 236, 236);
+  transition: color 0.2s ease-in-out;
+}
+
+.auth-btn .signin {
+  color: rgb(27, 27, 27);
+  font-family: 'Montserrat', sans-serif;
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+.auth-btn .signup {
+  color: rgb(27, 27, 27);
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 10px;
+  font-size: 0.8rem;
+}

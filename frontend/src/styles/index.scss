@@ -1,0 +1,15 @@
+@import './vars/fonts', './vars/colors';
+
+@import './components/mainStyle', './components/navigation',
+  './components/products', './components/card', './components/loader',
+  './components/techDetails', './components/authModal',
+  './components/userStyles', './components/messages', './components/cart',
+  './components/shippingPage', './components/paymentMethod',
+  './components/orderInfo', './components/profile',
+  './components/admin/adminPage', './components/admin/users/usersList',
+  './components/admin/users/userEdit', './components/admin/orders/orders',
+  './components/admin/products/productsPage',
+  './components/admin/products/productList',
+  './components/admin/products/productCreate', './components/404',
+  './components/productSort&Search', './components/pagination',
+  './components/oauthUserProfile', './components/footer';

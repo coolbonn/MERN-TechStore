@@ -1,0 +1,69 @@
+.product_container {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.product_container .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 50px;
+  background-color: #f0faf4;
+  width: 250px;
+  height: 170px;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 3px 5px 8px grey;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.product_container .box i {
+  font-size: 6.8rem;
+}
+
+.product_container .box .fa-mobile-alt {
+  color: rgb(209, 77, 0);
+  transition: color 0.3s ease-in-out;
+}
+
+.product_container .box .fa-tv {
+  color: rgb(86, 179, 128);
+  transition: color 0.3s ease-in-out;
+}
+
+.product_container .box .fa-laptop {
+  color: #542d5c;
+  transition: color 0.3s ease-in-out;
+}
+
+.product_container .box .fa-headphones-alt {
+  color: #297759;
+  transition: color 0.3s ease-in-out;
+}
+
+.product_container .box span {
+  color: rgb(77, 77, 77);
+  transition: color 0.3s ease-in-out;
+}
+
+.product_container .box:hover {
+  box-shadow: 3px 5px 8px rgb(5, 5, 5);
+}
+
+.product_container .box:hover > .fa-mobile-alt {
+  color: rgb(255, 94, 0);
+}
+.product_container .box:hover > .fa-tv {
+  color: rgb(107, 219, 157);
+}
+.product_container .box:hover > .fa-laptop {
+  color: #742b83;
+}
+.product_container .box:hover > .fa-headphones-alt {
+  color: #18a16d;
+}

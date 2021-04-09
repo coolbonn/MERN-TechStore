@@ -1,0 +1,35 @@
+.error_container {
+  background: #00b377;
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+  transition: background 0.3s ease-in-out;
+  top: 100px;
+  padding: 30px;
+  box-shadow: 1px 1px 12px #00b377;
+  text-align: center;
+  border-radius: 0 50px 0 40px;
+
+  h1 {
+    color: #eee;
+  }
+
+  p {
+    margin-top: 30px;
+    color: #eee;
+  }
+
+  .link {
+    margin-left: 20px;
+    color: rgb(24, 24, 24);
+    transition: color 0.3s ease-in-out;
+  }
+}
+
+.error_container:hover {
+  background: #00c986;
+}
+
+.error_container .link:hover {
+  color: rgb(253, 253, 253);
+}

@@ -1,0 +1,50 @@
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { cellPhonesList } from '../actions/cellPhoneActions'
+import Card from '../components/Card'
+import Loader from '../components/Loader'
+import { Message } from '../components/Messages'
+import ProductSort from '../components/ProductSort'
+import { PaginateProduct } from '../components/Paginate'
+
+const CellPhonePage = ({ match }) => {
+  const sortBy = match.params.sortBy
+  const brand = match.params.brand
+  const keyword = match.params.keyword
+  const pageNumber = match.params.pageNumber || 1
+
+  const dispatch = useDispatch()
+
+  const PhonesList = useSelector((state) => state.cells)
+  const { loading, error, cellphones, pages } = PhonesList
+
+  useEffect(() => {
+    dispatch(cellPhonesList(sortBy, brand, keyword, pageNumber))
+  }, [dispatch, sortBy, brand, keyword, pageNumber])
+
+  return (
+    <>
+      {loading && <Loader className='loader_container' />}
+      {error && <Message className='danger'>{error}</Message>}
+      {cellphones && (
+        <>
+          <ProductSort route={'cellphones'} />
+          <div className='product_list'>
+            {cellphones.map((data) => (
+              <div key={data._id} className='list_items'>
+                <Card data={data} route={'cellphones'} />
+              </div>
+            ))}
+          </div>
+          <PaginateProduct
+            pages={pages}
+            keyword={keyword ? keyword : ''}
+            brand={brand ? brand : ''}
+          />
+        </>
+      )}
+    </>
+  )
+}
+
+export default CellPhonePage

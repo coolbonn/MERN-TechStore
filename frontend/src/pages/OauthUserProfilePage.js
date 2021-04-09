@@ -1,0 +1,120 @@
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { myOauthUserOrderList, orderDelete } from '../actions/orderActions'
+import { Message } from '../components/Messages'
+import Loader from '../components/Loader'
+
+const OauthUserProfilePage = () => {
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  const ordersList = useSelector((state) => state.myOauthOrders)
+  const {
+    oauthOrders,
+    loading: loadingOauthOrders,
+    error: errorOauthOrders,
+  } = ordersList
+
+  const deleteOrder = useSelector((state) => state.orderDelete)
+  const {
+    success: successDelete,
+    loading: loadingDelete,
+    error: errorDelete,
+  } = deleteOrder
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(myOauthUserOrderList())
+  }, [dispatch])
+
+  const deleteOrderHandler = (id) => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(orderDelete(id))
+      window.location.reload()
+    }
+  }
+
+  return (
+    <div className='oauthUser_container'>
+      <div className='content'>
+        <h1>{userInfo.username}</h1>
+        <img src={userInfo.image} alt={userInfo.username} />
+      </div>
+      <hr />
+      <div className='oauthUser_table'>
+        {oauthOrders && oauthOrders.length === 0 && (
+          <div className='oauth_prof_info'>
+            <h3>No Orders!</h3>
+          </div>
+        )}
+        <h2>My Orders</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>ITEMS</th>
+              <th>PRICE</th>
+              <th>CREATED AT</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          {loadingDelete && <Loader />}
+          {loadingOauthOrders && <Loader />}
+          {errorDelete && <Message className='danger'>{errorDelete}</Message>}
+          {errorOauthOrders && errorOauthOrders && (
+            <Message className='danger'>{errorOauthOrders}</Message>
+          )}
+          {oauthOrders &&
+            oauthOrders.map((order) => (
+              <tbody key={order._id}>
+                <tr>
+                  <td>{order._id}</td>
+                  <td>{order.orderItems.length}</td>
+                  <td>${order.totalPrice}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <Link className='link' to={`/order/${order._id}`}>
+                        Pay Now
+                      </Link>
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <i className='fas fa-times'></i>
+                    )}
+                  </td>
+                  <td>
+                    {!order.isPaid ? (
+                      <p title="You Haven't Paid Yet">Details</p>
+                    ) : (
+                      <Link to={`/order/${order._id}`} className='link'>
+                        Details
+                      </Link>
+                    )}
+                  </td>
+                  <td>
+                    <i
+                      className='fas fa-trash-alt'
+                      onClick={() => deleteOrderHandler(order._id)}
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+        </table>
+      </div>
+    </div>
+  )
+}
+
+export default OauthUserProfilePage

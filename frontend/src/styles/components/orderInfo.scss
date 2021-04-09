@@ -1,0 +1,85 @@
+.order_container {
+  display: flex;
+  width: 100%;
+}
+
+.order_container_col_1 {
+  width: 75%;
+  padding: 10px;
+}
+
+.order_container_col_1 h4 {
+  margin-top: 15px;
+}
+
+.order_container_col_1 span {
+  font-size: small;
+  font-weight: 400;
+}
+
+.payment,
+.shipping {
+  margin-top: 40px;
+}
+
+.cart_items {
+  margin-top: 40px;
+}
+
+.cart_item_row_content {
+  display: flex;
+  align-items: center;
+}
+
+.cart_item_row_content span,
+.cart_item_row_content .link {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.cart_items_row img {
+  width: 30px;
+  margin-top: 10px;
+}
+
+.order_container_col_2 {
+  box-shadow: 2px 4px 8px grey;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.order_container_col_2 h2 {
+  text-align: center;
+}
+
+.prices {
+  padding: 20px;
+}
+
+.prices h4:not(:first-child) {
+  margin-top: 50px;
+}
+
+.prices span {
+  font-size: small;
+  font-weight: 400;
+}
+
+.order_container_col_2 button {
+  padding: 10px 0;
+  background: transparent;
+  border-color: #00bd39;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: color 0.3s ease-in-out;
+  margin-top: 50px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.order_container_col_2 button:hover {
+  background: rgb(22, 22, 22);
+  color: #eee;
+}

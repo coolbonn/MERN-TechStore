@@ -1,0 +1,125 @@
+.profile_container {
+  display: flex;
+}
+
+.profile_container_col_1 {
+  width: 30%;
+  background: rgba(252, 243, 250, 0.514);
+  box-shadow: 1px 1px 5px rgb(85, 85, 85);
+  padding: 10px;
+}
+
+.profile_container_col_1 h2 {
+  text-align: center;
+}
+
+.profile_container_col_1 form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.profile_container_col_1 form label {
+  margin-top: 15px;
+}
+
+.profile_container_col_1 form input {
+  padding: 10px 0;
+  background: transparent;
+  margin-top: 5px;
+  outline: none;
+  border-color: #41ff90;
+  text-indent: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 8px rgb(12, 12, 12);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.profile_container_col_1 form input:focus {
+  box-shadow: 1px 2px 8px rgb(1, 236, 91);
+}
+
+.profile_container_col_1 form button {
+  padding: 10px 0;
+  background: transparent;
+  border-color: #00bd39;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: color 0.3s ease-in-out;
+  margin-top: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.profile_container_col_1 form button:hover {
+  background: rgb(22, 22, 22);
+  color: #eee;
+}
+
+.profile_container_col_2 {
+  width: 70%;
+  background: rgba(252, 243, 250, 0.514);
+  box-shadow: 1px 1px 5px rgb(85, 85, 85);
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.prof_info {
+  background: #00ad48;
+  padding: 40px;
+  width: 30%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-5%);
+  text-align: center;
+  color: #eee;
+  border-radius: 15px;
+  box-shadow: 0 0 8px #00ad48;
+}
+
+.profile_container_col_2 table {
+  display: table;
+  border-spacing: 15px;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.profile_container_col_2 table thead {
+  border-bottom: 1px solid grey;
+}
+
+.profile_container_col_2 table tbody tr td {
+  padding: 20px;
+  border-bottom: 1px solid grey;
+}
+
+.profile_container_col_2 table tbody tr td .fa-times {
+  color: red;
+}
+
+.profile_container_col_2 table tbody tr td .fa-trash-alt {
+  color: rgb(194, 0, 0);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.profile_container_col_2 table tbody tr td .fa-trash-alt:hover {
+  color: rgb(255, 0, 0);
+}
+
+.profile_container_col_2 h2 {
+  text-align: center;
+}
+
+.profile_container_col_2 .link {
+  margin-left: 20px;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s ease-in-out;
+}
+
+.profile_container_col_2 .link:hover {
+  color: rgb(0, 114, 207);
+}

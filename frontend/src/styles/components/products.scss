@@ -1,0 +1,10 @@
+.product_list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 50px;
+}
+
+.list_items {
+  justify-self: center;
+  margin-top: 50px;
+}

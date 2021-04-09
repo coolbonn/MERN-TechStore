@@ -1,0 +1,50 @@
+.p_method_container {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(252, 243, 250, 0.514);
+  box-shadow: 1px 1px 5px rgb(1, 236, 91);
+  padding: 25px;
+}
+
+.p_method_container h1 {
+  text-align: center;
+}
+
+.p_method_container form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+.p_method label {
+  margin-top: 10px;
+  font-size: small;
+}
+
+.p_method .fa-cc-paypal {
+  margin-left: 15px;
+  font-size: 2rem;
+  color: #3b7bbf;
+}
+
+.p_method .fa-credit-card {
+  font-size: 2rem;
+  color: rgb(206, 113, 0);
+}
+
+.p_method_container form button {
+  padding: 5px 0;
+  background: transparent;
+  border-color: #00bd39;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: color 0.3s ease-in-out;
+  margin-top: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.p_method_container form button:hover {
+  background: rgb(22, 22, 22);
+  color: #eee;
+}

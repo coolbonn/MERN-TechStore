@@ -1,0 +1,58 @@
+.create_product_container {
+  width: 30%;
+  margin: 0 auto;
+  background: #eee;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 2px 1px 8px #eee;
+}
+
+.create_product_container h2 {
+  text-align: center;
+}
+
+.create_product_container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create_product_container form label {
+  font-size: 0.8rem;
+}
+
+.create_product_container form label:not(:first-child) {
+  margin-top: 15px;
+}
+
+.create_product_container form input {
+  padding: 5px 0;
+  background: transparent;
+  margin-top: 5px;
+  outline: none;
+  border-color: #41ff90;
+  text-indent: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 8px rgb(12, 12, 12);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.create_product_container form input:focus {
+  box-shadow: 1px 2px 8px rgb(1, 236, 91);
+}
+
+.create_product_container form button {
+  padding: 5px 0;
+  background: transparent;
+  border-color: #00bd39;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: color 0.3s ease-in-out;
+  margin-top: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.create_product_container form button:hover {
+  background: rgb(22, 22, 22);
+  color: #eee;
+}
