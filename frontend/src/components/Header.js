@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import AuthModal from './AuthModal'
 import UserDropdown from './UserDropdown'
+// import logo from '../../public/tech-logo.png'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,7 +16,7 @@ const Header = () => {
     <div>
       <header className='header'>
         <NavLink to='/' className='logo'>
-          <h1>LOGO</h1>
+          <img src={'/images/tech-logo.png'} alt='Logo' width={100} />
         </NavLink>
         <nav>
           <div className='page-links'>
@@ -65,28 +66,30 @@ const Header = () => {
                 <b className='signup'>Sign Up</b>
               </div>
             ) : (
-              <div className='user_dropdown_container'>
-                <div
-                  className='user_dropdown_btn'
-                  onClick={() => setOpenDropdown(!openDropdown)}
-                >
-                  {userInfo.isAdmin ? (
-                    <i className='fas fa-user-tie'></i>
-                  ) : (
-                    <i className='fas fa-user'></i>
-                  )}
-                  <h5>{userInfo.username}</h5>
-                  <i className='fas fa-caret-down'></i>
+              <>
+                <div className='user_dropdown_container'>
+                  <div
+                    className='user_dropdown_btn'
+                    onClick={() => setOpenDropdown(!openDropdown)}
+                  >
+                    {userInfo.isAdmin ? (
+                      <i className='fas fa-user-tie'></i>
+                    ) : (
+                      <i className='fas fa-user'></i>
+                    )}
+                    <h5>{userInfo.username}</h5>
+                    <i className='fas fa-caret-down'></i>
+                  </div>
+                  <UserDropdown
+                    openDropdown={openDropdown}
+                    closeDropdown={() => setOpenDropdown(false)}
+                  />
                 </div>
-              </div>
+              </>
             )}
           </div>
         </nav>
       </header>
-      <UserDropdown
-        openDropdown={openDropdown}
-        closeDropdown={() => setOpenDropdown(false)}
-      />
       <AuthModal
         isOpen={isOpen}
         onShut={() => setIsOpen(false)}

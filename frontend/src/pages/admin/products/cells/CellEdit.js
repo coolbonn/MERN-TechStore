@@ -8,7 +8,8 @@ import {
 } from '../../../../actions/cellPhoneActions'
 import Loader from '../../../../components/Loader'
 import { Message } from '../../../../components/Messages'
-import { CELL_EDIT_RESET } from '../../../../constants/cellPhoneConstants'
+import { CELL_EDIT_RESET } from '../../../../constants/productConstants'
+import ProductInput from '../../../../components/ProductInput'
 
 const CellEdit = ({ history, match }) => {
   const cellId = match.params.id
@@ -215,128 +216,37 @@ const CellEdit = ({ history, match }) => {
         {error && <Message className='danger'>{error}</Message>}
         <h2>Update Product</h2>
         <form onSubmit={submitHandler}>
-          <label>Name</label>
-          <input
-            type='text'
-            placeholder='Enter Product Name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+          <ProductInput
+            name={name}
+            setName={setName}
+            brand={brand}
+            setBrand={setBrand}
+            specs={specs}
+            setSpecs={setSpecs}
+            year={year}
+            setYear={setYear}
+            price={price}
+            setPrice={setPrice}
+            countInStock={countInStock}
+            setCountInStock={setCountInStock}
+            image={image}
+            setImage={setImage}
+            altImage1={altImage1}
+            setAltImage1={setAltImage1}
+            altImage2={altImage2}
+            setAltImage2={setAltImage2}
+            altImage3={altImage3}
+            setAltImage3={setAltImage3}
+            altImage4={altImage4}
+            setAltImage4={setAltImage4}
+            uploadFileHandler={uploadFileHandler}
+            uploadFile1Handler={uploadFile1Handler}
+            uploadFile2Handler={uploadFile2Handler}
+            uploadFile3Handler={uploadFile3Handler}
+            uploadFile4Handler={uploadFile4Handler}
+            uploading={uploading}
+            text={'Update Product'}
           />
-
-          <label>Brand</label>
-          <input
-            type='text'
-            placeholder='Enter Product Model'
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-          />
-
-          <label>Specs</label>
-          <input
-            type='text'
-            placeholder='Enter Product Specs'
-            value={specs}
-            onChange={(e) => setSpecs(e.target.value)}
-          />
-
-          <label>Year</label>
-          <input
-            type='number'
-            placeholder='Enter Product Year'
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-
-          <label>Price</label>
-          <input
-            type='number'
-            placeholder='Enter Product Price'
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-
-          {/* upload images */}
-
-          <label>Image</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <label>Image</label>
-          <input
-            type='file'
-            placeholder='Upload Product Image'
-            onChange={uploadFileHandler}
-          />
-
-          <label>Alt Image 1</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage1}
-            onChange={(e) => setAltImage1(e.target.value)}
-          />
-          <label>Alt Image 1</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 1'
-            onChange={uploadFile1Handler}
-          />
-
-          <label>Alt Image 2</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage2}
-            onChange={(e) => setAltImage2(e.target.value)}
-          />
-          <label>Alt Image 2</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 2'
-            onChange={uploadFile2Handler}
-          />
-
-          <label>Alt Image 3</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage3}
-            onChange={(e) => setAltImage3(e.target.value)}
-          />
-          <label>Alt Image 3</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 3'
-            onChange={uploadFile3Handler}
-          />
-
-          <label>Alt Image 4</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage4}
-            onChange={(e) => setAltImage4(e.target.value)}
-          />
-          <label>Alt Image 4</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 4'
-            onChange={uploadFile4Handler}
-          />
-          {uploading && <Loader />}
-
-          <label>Count In Stock</label>
-          <input
-            type='number'
-            placeholder='Enter Product Quantity'
-            value={countInStock}
-            onChange={(e) => setCountInStock(e.target.value)}
-          />
-
-          <button type='submit'> Update Product</button>
         </form>
       </div>
     </>

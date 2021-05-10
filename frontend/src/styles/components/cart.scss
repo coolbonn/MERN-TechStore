@@ -1,109 +1,148 @@
-.cart_message {
-  background: #eee;
-  padding: 25px;
-  width: 50%;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
-  top: 100px;
-  text-align: center;
-  box-shadow: 2px 4px 9px rgb(56, 56, 56);
-  border-radius: 10px;
-}
-
 .cart_grid {
   display: flex;
   width: 100%;
-}
 
-.cart_grid_col_1 {
-  width: 75%;
-  margin-right: 10px;
-  box-shadow: 2px 4px 8px #333;
-  padding: 10px;
-}
+  @media (max-width: 650px) {
+    flex-direction: column;
+    flex-flow: column-reverse;
+    align-items: flex-end;
+  }
 
-.cart_grid_col_1 h1 {
-  text-align: center;
-  margin-top: 50px;
-}
+  .col_1 {
+    width: 75%;
+    margin-right: 10px;
+    box-shadow: 2px 4px 8px $color-dark;
+    padding: 10px;
 
-.cart_grid_col_1 table {
-  display: table;
-  border-spacing: 15px;
-  width: 100%;
-  text-align: center;
-  border-collapse: collapse;
-  margin-top: 10px;
-  font-size: 0.8rem;
-}
+    @media (max-width: 650px) {
+      width: 100%;
+      margin-top: 50px;
+      margin-right: 0;
+    }
 
-.cart_grid_col_1 table thead tr {
-  border-bottom: 2px solid grey;
-}
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
 
-.cart_grid_col_1 table tbody tr td {
-  border-bottom: 2px solid #333;
-  padding: 10px 0;
+    table {
+      display: table;
+      border-spacing: 15px;
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.8rem;
+
+      thead {
+        tr {
+          border-bottom: 2px solid $color-secondary;
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            border-bottom: 2px solid $color-dark;
+            padding: 10px 0;
+
+            img {
+              width: 50px;
+              margin-top: 15px;
+            }
+
+            i {
+              margin-left: 15px;
+              color: $color-danger;
+              transition: color 0.3s ease-in-out;
+              cursor: pointer;
+
+              &:hover {
+                color: #ff0000;
+              }
+            }
+            select {
+              padding: 10px;
+              outline: none;
+              border: none;
+              border-radius: 25px;
+              background-color: rgba(19, 18, 18, 0.5);
+              color: white;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .col_2 {
+    flex-grow: 1;
+    box-shadow: 2px 4px 8px $color-dark;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media (max-width: 650px) {
+      width: 50%;
+    }
+
+    h3 {
+      &:not(:first-child) {
+        margin-top: 50px;
+      }
+
+      span {
+        font-weight: 400;
+        float: right;
+      }
+    }
+
+    button {
+      padding: 10px 0;
+      background: transparent;
+      border-color: $color-primary;
+      font-family: $fonts-primary;
+      outline: none;
+      border-radius: 10px;
+      transition: color 0.3s ease-in-out;
+      margin-top: 30px;
+      cursor: pointer;
+
+      &:hover {
+        background: $color-dark;
+        color: $color-light;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        background: inherit;
+        color: $color-secondary;
+        border-color: #5f9b71;
+      }
+    }
+
+    @media (max-width: 900px) {
+      h3 {
+        font-size: $sm;
+      }
+
+      button {
+        padding: 5px 0;
+        font-size: $xs;
+      }
+    }
+  }
 }
 
 .specs {
   width: 30%;
 }
 
-.cart_grid_col_1 table tbody tr td img {
-  width: 50px;
-  margin-top: 15px;
-}
-
-.cart_grid_col_1 table tbody tr td i {
-  margin-left: 15px;
-  color: #b30000;
-  transition: color 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.cart_grid_col_1 table tbody tr td i:hover {
-  color: #ff0000;
-}
-
-.cart_grid_col_2 {
-  flex-grow: 1;
-  box-shadow: 2px 4px 8px #333;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.cart_grid_col_2 h3:not(:first-child) {
-  margin-top: 50px;
-}
-
-.cart_grid_col_2 h3 span {
-  font-weight: 400;
-  float: right;
-}
-
-.cart_grid_col_2 button {
-  padding: 10px 0;
-  background: transparent;
-  border-color: #00bd39;
-  font-family: 'Montserrat', sans-serif;
-  outline: none;
-  transition: color 0.3s ease-in-out;
-  margin-top: 30px;
-  cursor: pointer;
-}
-
-.cart_grid_col_2 button:hover {
-  background: rgb(22, 22, 22);
-  color: #eee;
-}
-
-.cart_grid_col_2 button:disabled {
-  cursor: not-allowed;
-  background: inherit;
-  color: grey;
-  border-color: #5f9b71;
+@media (max-width: 1000px) {
+  .specs,
+  .year {
+    display: none;
+  }
 }

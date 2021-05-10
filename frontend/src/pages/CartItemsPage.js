@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import GoBack from '../components/GoBack'
 
 const CartItemsPage = ({ history, location, match }) => {
   const cellId = match.params.id
   const tvId = match.params.id
+  const compId = match.params.id
+  const accId = match.params.id
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
@@ -24,7 +26,13 @@ const CartItemsPage = ({ history, location, match }) => {
     if (tvId) {
       dispatch(addToCart(tvId, qty, 'tvs'))
     }
-  }, [dispatch, cellId, tvId, qty])
+    if (compId) {
+      dispatch(addToCart(compId, qty, 'computers'))
+    }
+    if (accId) {
+      dispatch(addToCart(accId, qty, 'accessories'))
+    }
+  }, [dispatch, cellId, tvId, compId, accId, qty])
 
   const removeCartItemHandler = (id) => {
     dispatch(removeFromCart(id))
@@ -44,13 +52,9 @@ const CartItemsPage = ({ history, location, match }) => {
         </div>
       ) : (
         <>
-          {cellId && (
-            <Link to={`/cellphones/${cellId}`} className='go_back'>
-              <i className='fas fa-arrow-circle-left'></i>
-            </Link>
-          )}
+          <GoBack />
           <div className='cart_grid'>
-            <div className='cart_grid_col_1'>
+            <div className='col_1'>
               {cartItems.length === 0 ? (
                 <h1>Your Cart is Empty</h1>
               ) : (
@@ -59,8 +63,8 @@ const CartItemsPage = ({ history, location, match }) => {
                     <tr>
                       <th>Image</th>
                       <th>Name</th>
-                      <th>Year</th>
-                      <th>Specs</th>
+                      <th className='year'>Year</th>
+                      <th className='specs'>Specs</th>
                       <th>Quantity</th>
                       <th>Price</th>
                       <th></th>
@@ -76,7 +80,7 @@ const CartItemsPage = ({ history, location, match }) => {
                                 <img src={item.image} alt={item.name} />
                               </td>
                               <td>{item.name}</td>
-                              <td>{item.year}</td>
+                              <td className='year'>{item.year}</td>
                               <td className='specs'>{item.specs}</td>
                               <td>
                                 <select
@@ -98,6 +102,22 @@ const CartItemsPage = ({ history, location, match }) => {
                                           item._id,
                                           Number(e.target.value),
                                           'tvs'
+                                        )
+                                      )
+                                    compId &&
+                                      dispatch(
+                                        addToCart(
+                                          item._id,
+                                          Number(e.target.value),
+                                          'computers'
+                                        )
+                                      )
+                                    accId &&
+                                      dispatch(
+                                        addToCart(
+                                          item._id,
+                                          Number(e.target.value),
+                                          'accessories'
                                         )
                                       )
                                   }}
@@ -128,7 +148,7 @@ const CartItemsPage = ({ history, location, match }) => {
                 </table>
               )}
             </div>
-            <div className='cart_grid_col_2'>
+            <div className='col_2'>
               <div>
                 <h3>
                   Total Items:{' '}

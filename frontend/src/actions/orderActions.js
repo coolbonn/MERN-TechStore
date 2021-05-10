@@ -3,6 +3,9 @@ import {
   CREATE_ORDER_FAIL,
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
+  DELETE_MY_ORDER_FAIL,
+  DELETE_MY_ORDER_REQUEST,
+  DELETE_MY_ORDER_SUCCESS,
   MY_OAUTH_USER_ORDER_LIST_FAIL,
   MY_OAUTH_USER_ORDER_LIST_REQUEST,
   MY_OAUTH_USER_ORDER_LIST_SUCCESS,
@@ -181,6 +184,36 @@ export const myOrderList = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: MY_ORDER_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const deleteMyOrder = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: DELETE_MY_ORDER_REQUEST })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.delete(`/api/orders/myorders`, config)
+
+    dispatch({
+      type: DELETE_MY_ORDER_SUCCESS,
+    })
+  } catch (error) {
+    dispatch({
+      type: DELETE_MY_ORDER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

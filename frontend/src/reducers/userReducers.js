@@ -4,6 +4,9 @@ import {
   GET_ALL_USERS_RESET,
   GET_ALL_USERS_SUCCESS,
   USER_DELETE_FAIL,
+  USER_DELETE_PROFILE_FAIL,
+  USER_DELETE_PROFILE_REQUEST,
+  USER_DELETE_PROFILE_SUCCESS,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DETAILS_FAIL,
@@ -119,6 +122,27 @@ export const userDetailsUpdateReducer = (state = {}, action) => {
   }
 }
 
+export const userDeleteProfileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_DELETE_PROFILE_REQUEST:
+      return {
+        loading: true,
+      }
+    case USER_DELETE_PROFILE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      }
+    case USER_DELETE_PROFILE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
 export const getAllUsersReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_ALL_USERS_REQUEST:
@@ -131,6 +155,7 @@ export const getAllUsersReducer = (state = {}, action) => {
         users: action.payload.users,
         page: action.payload.page,
         pages: action.payload.pages,
+        count: action.payload.count,
       }
     case GET_ALL_USERS_FAIL:
       return {

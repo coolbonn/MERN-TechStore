@@ -1,74 +1,192 @@
 .sort_container {
-  width: 90%;
-  display: flex;
-  margin: 0 auto;
-}
-
-.sort_container .col_1 {
-  width: 40%;
-  display: flex;
-  align-items: center;
-}
-
-.fa-ellipsis-v {
-  font-size: 1.9rem;
-  margin: 0 15px;
-  color: #5700b9;
-}
-
-.sort_container .col_1 select {
-  margin-left: 5px;
-  padding: 10px 0;
-  border-radius: 15px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  outline: none;
-  border-color: #eeeeee;
-  box-shadow: 0 0 2px #00b377;
-  transition: box-shadow 0.3s ease-in-out;
-}
-.sort_container .col_1 select:focus {
-  box-shadow: 0 0 8px #eeeeee;
-}
-
-.sort_container form {
-  width: 60%;
-}
-
-.sort_container .col_2 {
   width: 100%;
   display: flex;
   justify-content: center;
-}
 
-.sort_container .col_2 input {
-  width: 90%;
-  background: #2c2c2c;
-  text-indent: 10px;
-  color: #eee;
-  padding: 10px 0;
-  border-radius: 15px 0 0 15px;
-  outline: none;
-  border-color: #eeeeee;
-  box-shadow: 0 0 2px #eeeeee;
-  transition: box-shadow 0.3s ease-in-out;
-}
-.sort_container .col_2 input:focus {
-  box-shadow: 0 0 8px #202020;
-}
+  .col_1 {
+    width: 40%;
+    display: flex;
+    align-items: center;
 
-.sort_container .col_2 button {
-  width: 10%;
-  background: transparent;
-  padding: 10px 0;
-  border-radius: 0 15px 15px 0;
-  outline: none;
-  border-color: #eeeeee;
-  box-shadow: 0 0 2px #00b377;
-  transition: color 0.3s ease-in-out;
-  cursor: pointer;
-}
-.sort_container .col_2 button:hover {
-  color: rgb(253, 253, 253);
-  background: #2c2c2c;
+    .fa-ellipsis-v {
+      font-size: 1.9rem;
+      margin: 0 15px;
+      color: #5700b9;
+    }
+
+    select {
+      margin-left: 5px;
+      padding: 10px 0;
+      border-radius: 15px;
+      font-family: $fonts-primary;
+      font-weight: 700;
+      outline: none;
+      border-color: $color-light;
+      box-shadow: 0 0 2px $color-success;
+      transition: box-shadow 0.3s ease-in-out;
+
+      &:focus {
+        box-shadow: 0 0 8px $color-lighter;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .fa-ellipsis-v {
+        font-size: $md;
+      }
+
+      label {
+        font-size: $sm;
+      }
+
+      select {
+        margin-left: 5px;
+        padding: 5px 0;
+      }
+    }
+  }
+
+  form {
+    width: 50%;
+
+    .col_2 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      input {
+        width: 90%;
+        background: $color-dark;
+        text-indent: 10px;
+        color: $color-light;
+        padding: 10px 0;
+        border-radius: 15px 0 0 15px;
+        outline: none;
+        border-color: $color-light;
+        box-shadow: 0 0 5px $color-light;
+        transition: box-shadow 0.3s ease-in-out;
+
+        &:focus {
+          box-shadow: 0 0 8px $color-dark;
+        }
+      }
+
+      button {
+        width: 10%;
+        background: transparent;
+        padding: 10px 0;
+        border-radius: 0 15px 15px 0;
+        outline: none;
+        border-color: $color-light;
+        box-shadow: 0 0 2px $color-success;
+        transition: color 0.3s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-lighter;
+          background: $color-dark;
+        }
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .col_2 {
+        input {
+          width: 50%;
+        }
+
+        button {
+          width: 15%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    flex-direction: column-reverse;
+
+    .col_1 {
+      width: 100%;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    form {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 350px) {
+    flex-direction: column-reverse;
+
+    .col_1 {
+      flex-direction: column;
+
+      .fa-ellipsis-v {
+        display: none;
+      }
+
+      label {
+        margin-top: 10px;
+      }
+    }
+
+    .col_2 {
+      button {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  @media (min-width: 1700px) {
+    align-items: center;
+
+    .col_1 {
+      width: 50%;
+      align-items: center;
+      justify-content: center;
+
+      .fa-ellipsis-v {
+        font-size: 2.9rem;
+        margin: 0 35px;
+      }
+
+      label {
+        font-size: $md;
+      }
+
+      select {
+        padding: 15px 20px;
+        border-radius: 15px;
+        font-size: $md;
+      }
+    }
+
+    form {
+      width: 50%;
+
+      .col_2 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+
+        input {
+          width: 90%;
+          padding: 15px 0;
+          font-size: $md;
+        }
+
+        button {
+          width: 15%;
+          font-size: $md;
+
+          &:hover {
+            color: $color-lighter;
+            background: $color-dark;
+          }
+        }
+      }
+    }
+  }
 }

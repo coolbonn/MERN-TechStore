@@ -2,8 +2,9 @@
   position: absolute;
   width: 100%;
   left: 45%;
-  top: 40%;
+  top: 45%;
   align-items: center;
+  z-index: 10;
 }
 
 .profile_loader_container {
@@ -11,6 +12,14 @@
   position: absolute;
   left: 60%;
   top: 50%;
+  z-index: 10;
+}
+
+.home_loader {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 45%;
 }
 
 .loader {
@@ -20,6 +29,11 @@
   border-radius: 50%;
   background: black;
   animation: animate 2s linear infinite;
+
+  @media (max-width: 800px) {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 @keyframes animate {

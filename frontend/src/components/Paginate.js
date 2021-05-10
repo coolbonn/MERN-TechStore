@@ -6,6 +6,8 @@ export const PaginateProduct = ({
   isAdmin = false,
   keyword = '',
   brand = '',
+  route,
+  adminRoute,
 }) => {
   return (
     pages > 1 && (
@@ -19,11 +21,11 @@ export const PaginateProduct = ({
             to={
               !isAdmin
                 ? keyword
-                  ? `/cellphones/search/${keyword}/page/${x + 1}`
+                  ? `/${route}/search/${keyword}/page/${x + 1}`
                   : brand
-                  ? `/cellphones/brand/${brand}/page/${x + 1}`
-                  : `/cellphones/page/${x + 1}`
-                : `/admin/product/cells/page/${x + 1}`
+                  ? `/${route}/brand/${brand}/page/${x + 1}`
+                  : `/${route}/page/${x + 1}`
+                : `/admin/product/${adminRoute}/page/${x + 1}`
             }
           >
             <b>{x + 1}</b>

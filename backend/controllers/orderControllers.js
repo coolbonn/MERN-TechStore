@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler')
+const { deleteMany } = require('../models/OrderModel')
 const Order = require('../models/OrderModel')
 
 // @desc Create new order
@@ -15,12 +16,9 @@ const addOrderItems = asyncHandler(async (req, res) => {
     totalPrice,
   } = req.body
 
-  console.log(req.oauthUser)
-
   if (orderItems && orderItems.length === 0) {
     res.status(400)
     throw new Error('No order items')
-    return
   } else {
     const order = new Order({
       orderItems,
@@ -123,6 +121,25 @@ const getMyOrderList = asyncHandler(async (req, res) => {
   res.json(user)
 })
 
+// @desc Delete My Order
+// @route DELETE /api/orders/myOrders
+// @access Private
+const deleteMyOrder = asyncHandler(async (req, res) => {
+  const order = await Order.deleteMany({
+    user: {
+      id: req.user._id,
+      username: req.user.username,
+      email: req.user.email,
+    },
+  })
+
+  if (order) {
+    res.json({ message: 'Order removed' })
+  } else {
+    res.json({})
+  }
+})
+
 // @desc Get My oauthUserOrder List
 // @route GET /api/orders/myoauthUserOrders
 // @access Private
@@ -168,6 +185,7 @@ module.exports = {
   updateOrderToPaid,
   updateOrderToDelivered,
   getMyOrderList,
+  deleteMyOrder,
   getOrderList,
   deleteOrderById,
   getMyoauthUserOrderList,

@@ -4,59 +4,60 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
 
-.admin_container .box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
-  margin-top: 50px;
-  background-color: #f0faf4;
-  width: 250px;
-  height: 170px;
-  padding: 10px;
-  border-radius: 50px;
-  box-shadow: 3px 5px 8px grey;
-  text-decoration: none;
-  transition: box-shadow 0.3s ease-in-out;
-}
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 50px;
+    background-color: $color-light;
+    width: 250px;
+    height: 170px;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 3px 5px 8px $color-secondary;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease-in-out;
 
-.admin_container .box i {
-  font-size: 6.8rem;
-}
+    span {
+      color: $color-dark;
+      transition: color 0.3s ease-in-out;
+    }
 
-.admin_container .box .fa-users-cog {
-  color: rgb(110, 110, 110);
-  transition: color 0.3s ease-in-out;
-}
+    &:hover {
+      box-shadow: 3px 5px 8px $color-dark;
+    }
 
-.admin_container .box .fa-box {
-  color: rgb(0, 206, 93);
-  transition: color 0.3s ease-in-out;
-}
+    i {
+      font-size: 6.8rem;
+    }
 
-.admin_container .box .fa-cash-register {
-  color: #b30000;
-  transition: color 0.3s ease-in-out;
-}
+    .fa-users-cog {
+      color: rgb(110, 110, 110);
+      transition: color 0.3s ease-in-out;
+    }
 
-.admin_container .box span {
-  color: rgb(77, 77, 77);
-  transition: color 0.3s ease-in-out;
-}
+    &:hover > .fa-users-cog {
+      color: rgb(15, 15, 15);
+    }
 
-.admin_container .box:hover {
-  box-shadow: 3px 5px 8px rgb(5, 5, 5);
-}
+    .fa-box {
+      color: rgb(0, 206, 93);
+      transition: color 0.3s ease-in-out;
+    }
 
-.admin_container .box:hover > .fa-users-cog {
-  color: rgb(15, 15, 15);
-}
+    &:hover > .fa-box {
+      color: rgb(0, 252, 113);
+    }
 
-.admin_container .box:hover > .fa-box {
-  color: rgb(0, 252, 113);
-}
-.admin_container .box:hover > .fa-cash-register {
-  color: #f30000;
+    .fa-cash-register {
+      color: #b30000;
+      transition: color 0.3s ease-in-out;
+    }
+
+    &:hover > .fa-cash-register {
+      color: #f30000;
+    }
+  }
 }

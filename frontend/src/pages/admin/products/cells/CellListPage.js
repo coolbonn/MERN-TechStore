@@ -13,7 +13,7 @@ const CellListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
 
   const phones = useSelector((state) => state.cells)
-  const { loading, error, cellphones, pages } = phones
+  const { loading, error, cellphones, pages, count } = phones
 
   const deleteCell = useSelector((state) => state.cellDelete)
   const {
@@ -43,6 +43,9 @@ const CellListPage = ({ match }) => {
         <Link to='/admin/products' className='go_back'>
           <i className='fas fa-arrow-circle-left'></i>
         </Link>
+        <div className='count'>
+          <h3>Total Product: {count === 0 ? 0 : count}</h3>
+        </div>
         <Link to='/admin/product/cells/create' className='cr_btn'>
           Create New Product
         </Link>
@@ -62,11 +65,11 @@ const CellListPage = ({ match }) => {
               <thead>
                 <tr>
                   <th>IMAGE</th>
-                  <th>ID</th>
+                  <th className='p_t_hide_id'>ID</th>
                   <th>NAME</th>
-                  <th>BRAND</th>
-                  <th>SPECS</th>
-                  <th>YEAR</th>
+                  <th className='p_t_hide_brand'>BRAND</th>
+                  <th className='p_t_hide_specs'>SPECS</th>
+                  <th className='p_t_hide_year'>YEAR</th>
                   <th>PRICE</th>
                   <th>COUNT IN STOCK</th>
                   <th></th>
@@ -80,11 +83,11 @@ const CellListPage = ({ match }) => {
                     <td>
                       <img src={cell.image} alt={cell.name} />
                     </td>
-                    <td>{cell._id}</td>
+                    <td className='p_t_hide_id'>{cell._id}</td>
                     <td>{cell.name}</td>
-                    <td>{cell.brand}</td>
-                    <td>{cell.specs}</td>
-                    <td>{cell.year}</td>
+                    <td className='p_t_hide_brand'>{cell.brand}</td>
+                    <td className='p_t_hide_specs'>{cell.specs}</td>
+                    <td className='p_t_hide_year'>{cell.year}</td>
                     <td>${cell.price}</td>
                     <td>{cell.countInStock}</td>
                     <td>
@@ -106,7 +109,11 @@ const CellListPage = ({ match }) => {
                 </tbody>
               ))}
             </table>
-            <PaginateProduct pages={pages} isAdmin={true} />
+            <PaginateProduct
+              pages={pages}
+              isAdmin={true}
+              adminRoute={'cells'}
+            />
           </>
         )}
       </div>

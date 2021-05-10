@@ -2,36 +2,67 @@
   width: 95%;
   padding: 10px;
   margin: 0 auto;
+
+  table {
+    display: table;
+    border-spacing: 15px;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: $sm;
+
+    @media (max-width: 1000px) {
+      font-size: $xs;
+    }
+
+    thead {
+      border-bottom: 1px solid $color-secondary;
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 20px;
+          border-bottom: 1px solid $color-secondary;
+
+          @media (max-width: 390px) {
+            padding: 10px;
+          }
+
+          i {
+            color: $color-danger;
+          }
+
+          .fa-trash-alt {
+            color: rgb(192, 18, 18);
+            transition: color 0.3s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+              color: rgb(247, 3, 3);
+            }
+          }
+
+          .link {
+            margin-left: 20px;
+            color: $color-darker;
+            transition: color 0.3s ease-in-out;
+
+            &:hover {
+              color: rgb(0, 114, 207);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.orderList_container table {
-  display: table;
-  border-spacing: 15px;
-  width: 100%;
-  text-align: center;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-.orderList_container table thead {
-  border-bottom: 1px solid grey;
-}
-
-.orderList_container table tbody tr td {
-  padding: 20px;
-  border-bottom: 1px solid grey;
-}
-
-.orderList_container table tbody tr td i {
-  color: red;
-}
-
-.orderList_container .link {
-  margin-left: 20px;
-  color: rgb(0, 0, 0);
-  transition: color 0.3s ease-in-out;
-}
-
-.orderList_container .link:hover {
-  color: rgb(0, 114, 207);
+@media (max-width: 750px) {
+  .o_t_hide_id,
+  .o_t_hide_date,
+  .o_t_hide_deli {
+    display: none;
+  }
 }

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { cellPhoneCreate } from '../../../../actions/cellPhoneActions'
 import Loader from '../../../../components/Loader'
 import { Message } from '../../../../components/Messages'
-import { CELL_CREATE_RESET } from '../../../../constants/cellPhoneConstants'
+import { CELL_CREATE_RESET } from '../../../../constants/productConstants'
+import ProductInput from '../../../../components/ProductInput'
+import { Link } from 'react-router-dom'
 
 const CellCreate = ({ history }) => {
   const [name, setName] = useState('Test Name')
@@ -13,11 +14,21 @@ const CellCreate = ({ history }) => {
   const [specs, setSpecs] = useState('Test Specs')
   const [year, setYear] = useState(1999)
   const [price, setPrice] = useState(0)
-  const [image, setImage] = useState('/images/cells/sample.png')
-  const [altImage1, setAltImage1] = useState('/images/cells/alt-sample1.png')
-  const [altImage2, setAltImage2] = useState('/images/cells/alt-sample2.png')
-  const [altImage3, setAltImage3] = useState('/images/cells/alt-sample3.png')
-  const [altImage4, setAltImage4] = useState('/images/cells/alt-sample4.png')
+  const [image, setImage] = useState(
+    'https://am3pap006files.storage.live.com/y4mPoRAQIrPz3lYF5xASgRdA_nz1cULJWbGMFlhezYIVQgiXm97QOou5-XT64hfHE5Diud8deb-hnQ8PVUcj0Z9Oyrhg9Yz08ibU2HCpMS7insul9KVNngAY5sw1gn_OtC5Cf1fZbLGDJWcGGK7FhOdu8lxH8-b3FXsNs5N1SzN9Y6yoRxSdq68SzTEpFcjzBTP?width=436&height=512&cropmode=none'
+  )
+  const [altImage1, setAltImage1] = useState(
+    'https://am3pap006files.storage.live.com/y4mF0ipGRx5t325lFrSu9sPs-4TLbw8IkOZfe9joRzkQcpVMeq5g_QtA4jc0ppoWDlMk3EQmKU_tEuF-WtBV5mjFvJWaYw9Bcjvs6SrWauoz67hhPqQsHRoDV_934CpsWGogd40zpdW8vfh_Q52Q2_HYMUsnD9rgyT8W4r_CLqBiQHKP8YFcqPNTLeqVP86pq19?width=500&height=400&cropmode=none'
+  )
+  const [altImage2, setAltImage2] = useState(
+    'https://am3pap006files.storage.live.com/y4mszxI3BSy0E3H2gu7n4Ir4fdHMT80skpVpvoQYy8VRI4pg5QAFcFEVz0rg3jnxhGrWRb5VfXvjv01G3UBP8NJyJC_pnMfDFVYRWG8SSJJeXZrP08HqVgx51KwM6R1AEE4M4Wz8QkecWA2jWGDT8vWkPxJMAu5tfsK92HNu4uYPmaAxCniZUqDl5Z5_l0gT1xV?width=350&height=350&cropmode=none'
+  )
+  const [altImage3, setAltImage3] = useState(
+    'https://am3pap006files.storage.live.com/y4mk_E-1eLVw4ZIagRTOKtPxC8AKMWqPJ-KPN4HZ4jJuHZuw6tf07FIg8SC9R3HXZpBmbvc3pDQ8jqxgvS6U3zyyufmv8JbZHzLDyyUKlv4ent7qeJTHzFVvO5RDdQoT34qfAJLnxhqIbjBkL1Wu-oy6_zpV4zpuLxfP3NxKDuhmYVRy-cFo1t9c3LFMve0z2t3?width=700&height=700&cropmode=none'
+  )
+  const [altImage4, setAltImage4] = useState(
+    'https://am3pap006files.storage.live.com/y4mr_xfIBAmM2JbGQYt0BfMyhNbVFmDVCzm7l9IoYfMPaUdd2-_eTHxydSUCdNu0Z86ko0fFeMJ5fgWzVVn5P7PV_Bv_mAL1HwVPJ3a_8TW9RiXKJgSWS17Zq4Zz-DPH3O5yISyIe6GIzp4lTtMXknF58hVnKC4BAru1FalQqzA1xAgSI4Iu9IlYqQydrQtU6HO?width=700&height=700&cropmode=none'
+  )
   const [countInStock, setCountInStock] = useState(0)
   const [uploading, setUploading] = useState(false)
 
@@ -183,128 +194,36 @@ const CellCreate = ({ history }) => {
         {error && <Message className='danger'>{error}</Message>}
         <h2>Create Product</h2>
         <form onSubmit={submitHandler}>
-          <label>Name</label>
-          <input
-            type='text'
-            placeholder='Enter Product Name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+          <ProductInput
+            name={name}
+            setName={setName}
+            brand={brand}
+            setBrand={setBrand}
+            specs={specs}
+            setSpecs={setSpecs}
+            year={year}
+            setYear={setYear}
+            price={price}
+            setPrice={setPrice}
+            countInStock={countInStock}
+            setCountInStock={setCountInStock}
+            image={image}
+            setImage={setImage}
+            altImage1={altImage1}
+            setAltImage1={setAltImage1}
+            altImage2={altImage2}
+            setAltImage2={setAltImage2}
+            altImage3={altImage3}
+            setAltImage3={setAltImage3}
+            altImage4={altImage4}
+            setAltImage4={setAltImage4}
+            uploadFileHandler={uploadFileHandler}
+            uploadFile1Handler={uploadFile1Handler}
+            uploadFile2Handler={uploadFile2Handler}
+            uploadFile3Handler={uploadFile3Handler}
+            uploadFile4Handler={uploadFile4Handler}
+            uploading={uploading}
           />
-
-          <label>Brand</label>
-          <input
-            type='text'
-            placeholder='Enter Product Model'
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-          />
-
-          <label>Specs</label>
-          <input
-            type='text'
-            placeholder='Enter Product Specs'
-            value={specs}
-            onChange={(e) => setSpecs(e.target.value)}
-          />
-
-          <label>Year</label>
-          <input
-            type='number'
-            placeholder='Enter Product Year'
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-
-          <label>Price</label>
-          <input
-            type='number'
-            placeholder='Enter Product Price'
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-
-          {/* upload images */}
-          <label>Image</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <label>Image</label>
-          <input
-            type='file'
-            placeholder='Upload Product Image'
-            onChange={uploadFileHandler}
-          />
-
-          <label>Alt Image 1</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage1}
-            onChange={(e) => setAltImage1(e.target.value)}
-          />
-          <label>Alt Image 1</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 1'
-            onChange={uploadFile1Handler}
-          />
-
-          <label>Alt Image 2</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage2}
-            onChange={(e) => setAltImage2(e.target.value)}
-          />
-          <label>Alt Image 2</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 2'
-            onChange={uploadFile2Handler}
-          />
-
-          <label>Alt Image 3</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage3}
-            onChange={(e) => setAltImage3(e.target.value)}
-          />
-          <label>Alt Image 3</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 3'
-            onChange={uploadFile3Handler}
-          />
-
-          <label>Alt Image 4</label>
-          <input
-            type='text'
-            placeholder='Enter Image Url'
-            value={altImage4}
-            onChange={(e) => setAltImage4(e.target.value)}
-          />
-          <label>Alt Image 4</label>
-          <input
-            type='file'
-            placeholder='Upload Product Alt Image 4'
-            onChange={uploadFile4Handler}
-          />
-
-          {uploading && <Loader />}
-
-          <label>Count In Stock</label>
-          <input
-            type='number'
-            placeholder='Enter Product Quantity'
-            value={countInStock}
-            onChange={(e) => setCountInStock(e.target.value)}
-          />
-
-          <button type='submit'>Create Product</button>
         </form>
       </div>
     </>

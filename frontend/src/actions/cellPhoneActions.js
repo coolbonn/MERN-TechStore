@@ -15,7 +15,7 @@ import {
   CELL_LIST_FAIL,
   CELL_LIST_REQUEST,
   CELL_LIST_SUCCESS,
-} from '../constants/cellPhoneConstants'
+} from '../constants/productConstants'
 
 export const cellPhonesList = (
   sortBy = '',

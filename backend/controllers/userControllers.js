@@ -46,14 +46,12 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email })
 
   if (user && (await user.matchPassword(password))) {
-    user.isOnline = true
     res.json({
       _id: user._id,
       username: user.username,
       email: user.email,
       age: user.age,
       isAdmin: user.isAdmin,
-      isOnline: user.isOnline,
       token: generateToken(user._id),
     })
   } else {
@@ -64,7 +62,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 //@Desc Get All Users
 //@Route GET /api/users
-//@Access private
+//@Access private/admin
 const getUsers = asyncHandler(async (req, res) => {
   const pageSize = 12
   const page = Number(req.query.pageNumber) || 1
@@ -75,7 +73,7 @@ const getUsers = asyncHandler(async (req, res) => {
     .limit(pageSize)
     .skip(pageSize * (page - 1))
 
-  res.json({ users, page, pages: Math.ceil(count / pageSize) })
+  res.json({ users, page, count, pages: Math.ceil(count / pageSize) })
 })
 
 //@Desc Get User Profile
@@ -126,6 +124,21 @@ const UpdateUserProfile = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('User Not Found')
   }
+})
+
+//@Desc Delete Myself
+//@Route DELETE /api/users/profile
+//@Access private
+const DeleteUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if (!user) {
+    throw new Error('User not found!')
+  }
+
+  await user.remove()
+
+  res.json({ message: 'User Removed' })
 })
 
 //@Desc Delete User
@@ -192,6 +205,7 @@ module.exports = {
   loginUser,
   getUserProfile,
   UpdateUserProfile,
+  DeleteUserProfile,
   deleteUser,
   updateUser,
   getUser,

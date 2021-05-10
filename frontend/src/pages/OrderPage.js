@@ -22,7 +22,7 @@ const OrderPage = ({ history }) => {
   ).toFixed(2)
 
   const orderInfo = useSelector((state) => state.order)
-  const { error, success, order } = orderInfo
+  const { success, order } = orderInfo
 
   const dispatch = useDispatch()
 
@@ -54,9 +54,9 @@ const OrderPage = ({ history }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='order_container'>
-        <div className='order_container_col_1'>
+        <div className='col_1'>
           <div className='shipping'>
-            <h2>Shipping</h2>
+            <h2>Shipping Address</h2>
             <hr />
             <h4>
               Country: <span>{cart.shippingAddress.country}</span>
@@ -82,11 +82,11 @@ const OrderPage = ({ history }) => {
             </h4>
           </div>
           <div className='cart_items'>
-            <h2>Cart Items</h2>
+            <h2>Items</h2>
             <hr />
-            <div className='cart_items_row'>
+            <div className='row'>
               {cart.cartItems.map((item) => (
-                <div className='cart_item_row_content'>
+                <div className='content'>
                   <img src={item.image} alt={item.name} />
                   <Link className='link' to={`/cellphones/${item._id}`}>
                     {item.name}
@@ -100,7 +100,7 @@ const OrderPage = ({ history }) => {
             </div>
           </div>
         </div>
-        <div className='order_container_col_2'>
+        <div className='col_2'>
           <h2>Order Summery</h2>
           <div className='prices'>
             <h4>
@@ -116,7 +116,7 @@ const OrderPage = ({ history }) => {
               Total: <span>${cart.totalPrice}</span>
             </h4>
           </div>
-          <button onClick={placeOrderHandler}>Place Order</button>
+          <button onClick={placeOrderHandler}>Order Now</button>
         </div>
       </div>
     </div>

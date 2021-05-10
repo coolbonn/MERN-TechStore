@@ -94,7 +94,7 @@ const getCellPhones = asyncHandler(async (req, res) => {
           .limit(pageSize)
           .skip(pageSize * (page - 1))
 
-  res.json({ cellPhones, page, pages: Math.ceil(count / pageSize) })
+  res.json({ cellPhones, page, count, pages: Math.ceil(count / pageSize) })
 })
 
 //@Desc Get Cell Phones By Id
@@ -126,7 +126,6 @@ const deleteCellPhone = asyncHandler(async (req, res) => {
     if (path) {
       fs.unlink(path, (err) => {
         if (err) {
-          console.error(err)
           return
         }
       })
@@ -135,7 +134,6 @@ const deleteCellPhone = asyncHandler(async (req, res) => {
     if (path1) {
       fs.unlink(path1, (err) => {
         if (err) {
-          console.error(err)
           return
         }
       })
@@ -143,7 +141,6 @@ const deleteCellPhone = asyncHandler(async (req, res) => {
     if (path2) {
       fs.unlink(path2, (err) => {
         if (err) {
-          console.error(err)
           return
         }
       })
@@ -151,7 +148,6 @@ const deleteCellPhone = asyncHandler(async (req, res) => {
     if (path3) {
       fs.unlink(path3, (err) => {
         if (err) {
-          console.error(err)
           return
         }
       })
@@ -159,7 +155,6 @@ const deleteCellPhone = asyncHandler(async (req, res) => {
     if (path4) {
       fs.unlink(path4, (err) => {
         if (err) {
-          console.error(err)
           return
         }
       })

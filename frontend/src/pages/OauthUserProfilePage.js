@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { myOauthUserOrderList, orderDelete } from '../actions/orderActions'
-import { Message } from '../components/Messages'
+import { Message, ContentMessage } from '../components/Messages'
 import Loader from '../components/Loader'
 
 const OauthUserProfilePage = () => {
@@ -27,12 +27,15 @@ const OauthUserProfilePage = () => {
 
   useEffect(() => {
     dispatch(myOauthUserOrderList())
-  }, [dispatch])
+
+    if (successDelete) {
+      window.location.reload()
+    }
+  }, [dispatch, successDelete])
 
   const deleteOrderHandler = (id) => {
     if (window.confirm('Are you sure?')) {
       dispatch(orderDelete(id))
-      window.location.reload()
     }
   }
 
@@ -44,21 +47,21 @@ const OauthUserProfilePage = () => {
       </div>
       <hr />
       <div className='oauthUser_table'>
-        {oauthOrders && oauthOrders.length === 0 && (
-          <div className='oauth_prof_info'>
-            <h3>No Orders!</h3>
-          </div>
-        )}
+        <ContentMessage
+          products={oauthOrders}
+          contentMsgClass={'oauth_prof_info'}
+          text={'No Orders!'}
+        />
         <h2>My Orders</h2>
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th className='pr_t_hide_id'>ID</th>
               <th>ITEMS</th>
               <th>PRICE</th>
-              <th>CREATED AT</th>
+              <th className='pr_t_hide_crt'>CREATED AT</th>
               <th>PAID</th>
-              <th>DELIVERED</th>
+              <th className='pr_t_hide_deli'>DELIVERED</th>
               <th></th>
               <th></th>
             </tr>
@@ -73,10 +76,12 @@ const OauthUserProfilePage = () => {
             oauthOrders.map((order) => (
               <tbody key={order._id}>
                 <tr>
-                  <td>{order._id}</td>
+                  <td className='pr_t_hide_id'>{order._id}</td>
                   <td>{order.orderItems.length}</td>
                   <td>${order.totalPrice}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td className='pr_t_hide_crt'>
+                    {order.createdAt.substring(0, 10)}
+                  </td>
                   <td>
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
@@ -86,7 +91,7 @@ const OauthUserProfilePage = () => {
                       </Link>
                     )}
                   </td>
-                  <td>
+                  <td className='pr_t_hide_deli'>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (

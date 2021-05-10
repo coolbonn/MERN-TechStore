@@ -2,6 +2,9 @@ import {
   CREATE_ORDER_FAIL,
   CREATE_ORDER_REQUEST,
   CREATE_ORDER_SUCCESS,
+  DELETE_MY_ORDER_FAIL,
+  DELETE_MY_ORDER_REQUEST,
+  DELETE_MY_ORDER_SUCCESS,
   MY_OAUTH_USER_ORDER_LIST_FAIL,
   MY_OAUTH_USER_ORDER_LIST_REQUEST,
   MY_OAUTH_USER_ORDER_LIST_RESET,
@@ -139,6 +142,27 @@ export const myOrderListReducer = (state = {}, action) => {
       }
     case MY_ORDER_LIST_RESET:
       return {}
+    default:
+      return state
+  }
+}
+
+export const deleteMyOrderReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_MY_ORDER_REQUEST:
+      return {
+        loading: true,
+      }
+    case DELETE_MY_ORDER_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      }
+    case DELETE_MY_ORDER_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
     default:
       return state
   }

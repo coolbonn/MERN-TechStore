@@ -6,11 +6,7 @@ const Card = ({ data, route }) => {
     <>
       <Link to={`/${route}/${data._id}`} style={{ textDecoration: 'none' }}>
         <div className='card'>
-          <img
-            className='card_img'
-            src={data.image}
-            style={{ width: '200px' }}
-          />
+          <img src={data.image} alt={data.name} />
           <div className='card_body'>
             <div className='card_text'>
               <Link className='text text_link' to={`/${route}/${data._id}`}>

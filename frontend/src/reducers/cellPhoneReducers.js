@@ -16,7 +16,7 @@ import {
   CELL_LIST_FAIL,
   CELL_LIST_REQUEST,
   CELL_LIST_SUCCESS,
-} from '../constants/cellPhoneConstants'
+} from '../constants/productConstants'
 
 export const cellPhoneReducer = (state = { cellphones: [] }, action) => {
   switch (action.type) {
@@ -31,6 +31,7 @@ export const cellPhoneReducer = (state = { cellphones: [] }, action) => {
         cellphones: action.payload.cellPhones,
         pages: action.payload.pages,
         page: action.payload.page,
+        count: action.payload.count,
       }
     case CELL_LIST_FAIL:
       return {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { userRegisterAction } from '../actions/userActions'
 import Loader from './Loader'
 import { Message } from './Messages'

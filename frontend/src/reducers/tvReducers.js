@@ -16,7 +16,7 @@ import {
   TV_LIST_FAIL,
   TV_LIST_REQUEST,
   TV_LIST_SUCCESS,
-} from '../constants/tvConstants'
+} from '../constants/productConstants'
 
 export const tvListReducer = (state = { tvs: [] }, action) => {
   switch (action.type) {
@@ -31,6 +31,7 @@ export const tvListReducer = (state = { tvs: [] }, action) => {
         tvs: action.payload.tvs,
         pages: action.payload.pages,
         page: action.payload.page,
+        count: action.payload.count,
       }
     case TV_LIST_FAIL:
       return {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import GoBack from '../components/GoBack'
 import TechDetails from '../components/TechDetails'
 import { tvDetails } from '../actions/tvActions'
 import Loader from '../components/Loader'
@@ -33,9 +33,7 @@ const TvDetailsPage = ({ history, match }) => {
 
   return (
     <div className='detail_container'>
-      <Link to='/tvs' className='go_back'>
-        <i className='fas fa-arrow-circle-left'></i>
-      </Link>
+      <GoBack />
       {error && <p>{error}</p>}
       {loading && <Loader className='loader_container' />}
       <TechDetails

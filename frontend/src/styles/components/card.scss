@@ -2,46 +2,128 @@
   width: 270px;
   height: 500px;
   padding: 10px 20px 50px 20px;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 4px 6px 10px rgb(32, 32, 32);
+  background: $bg-trans;
+  backdrop-filter: blur(10px);
+  box-shadow: 4px 6px 10px $color-dark;
   border-radius: 20px;
+  border-top: 2px solid $bg-trans;
+  border-left: 2px solid $bg-trans;
   transition: 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.card_img {
-  box-shadow: 1px 1px 4px black;
-}
+  img {
+    box-shadow: 1px 1px 4px $color-darker;
+    width: 200px;
+  }
 
-.card:hover {
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 4px 6px 15px rgb(0, 0, 0);
-  transition: 0.3s ease-in-out;
-}
+  &:hover {
+    background: $bg-trans;
+    box-shadow: 4px 6px 15px $color-dark;
+    transition: 0.3s ease-in-out;
+  }
 
-.card_body {
-  margin-top: 20px;
-  border-top: 1px solid rgb(36, 35, 35);
-}
+  .card_body {
+    margin-top: 20px;
+    border-top: 1px solid $color-dark;
 
-.card_text {
-  margin-top: 20px;
-  text-align: center;
-}
+    .card_text {
+      margin-top: 20px;
+      text-align: center;
 
-.card_text .text_link {
-  text-decoration: none;
-  color: rgb(53, 53, 53);
-}
+      .text_link {
+        text-decoration: none;
+        color: $color-secondary;
 
-.card_text .text_link:hover {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-}
+        &:hover {
+          text-decoration: none;
+          color: $color-darker;
+        }
+      }
 
-.card_text .text {
-  margin-top: 20px;
-  color: rgb(53, 53, 53);
+      .text {
+        margin-top: 20px;
+        color: $color-dark;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    width: 200px;
+    height: 400px;
+
+    img {
+      width: 150px;
+    }
+
+    .card_body {
+      margin-top: 10px;
+
+      .card_text {
+        margin-top: 10px;
+
+        .text_link {
+          font-size: $sm;
+        }
+
+        .text {
+          margin-top: 10px;
+          font-size: $sm;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 670px) {
+    width: 150px;
+    height: 300px;
+
+    img {
+      width: 100px;
+    }
+
+    .card_body {
+      margin-top: 10px;
+
+      .card_text {
+        margin-top: 5px;
+
+        .text_link {
+          font-size: $xs;
+        }
+
+        .text {
+          margin-top: 10px;
+          font-size: $xs;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1700px) {
+    width: 350px;
+    height: 700px;
+
+    img {
+      width: 300px;
+    }
+
+    .card_body {
+      margin-top: 30px;
+
+      .card_text {
+        margin-top: 30px;
+
+        .text_link {
+          font-size: $md;
+        }
+
+        .text {
+          margin-top: 10px;
+          font-size: $md;
+        }
+      }
+    }
+  }
 }

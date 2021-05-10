@@ -15,7 +15,7 @@ import {
   TV_LIST_FAIL,
   TV_LIST_REQUEST,
   TV_LIST_SUCCESS,
-} from '../constants/tvConstants'
+} from '../constants/productConstants'
 
 export const tvsList = (
   sortBy = '',

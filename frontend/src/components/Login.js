@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { userLoginAction } from '../actions/userActions'
 import Loader from './Loader'
 import { Message } from './Messages'
-import { Facebook } from './OauthLogin'
+import { Facebook, Google } from './OauthLogin'
 
 const Login = ({ onShut }) => {
   const [email, setEmail] = useState('')
@@ -37,12 +37,7 @@ const Login = ({ onShut }) => {
         <h1 className='h1'>Sign in</h1>
         <div className='social-container'>
           <Facebook close={onShut} />
-          <Link className='modal-link social' to='/'>
-            <i className='fab fa-google-plus-g'></i>
-          </Link>
-          <Link className='modal-link social' to='/'>
-            <i className='fab fa-linkedin-in'></i>
-          </Link>
+          <Google close={onShut} />
         </div>
         <span className='span'>or use your account</span>
         <input

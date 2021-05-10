@@ -6,11 +6,11 @@ import { Message } from '../../../../components/Messages'
 import { tvDelete, tvsList } from '../../../../actions/tvActions'
 import { PaginateProduct } from '../../../../components/Paginate'
 
-const CellListPage = ({ match }) => {
+const TvListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
 
   const tvList = useSelector((state) => state.tvs)
-  const { loading, error, tvs, pages } = tvList
+  const { loading, error, tvs, pages, count } = tvList
 
   const deleteTv = useSelector((state) => state.tvDelete)
   const {
@@ -40,6 +40,9 @@ const CellListPage = ({ match }) => {
         <Link to='/admin/products' className='go_back'>
           <i className='fas fa-arrow-circle-left'></i>
         </Link>
+        <div className='count'>
+          <h3>Total Product: {count === 0 ? 0 : count}</h3>
+        </div>
         <Link to='/admin/product/tvs/create' className='cr_btn'>
           Create New Product
         </Link>
@@ -59,11 +62,11 @@ const CellListPage = ({ match }) => {
               <thead>
                 <tr>
                   <th>IMAGE</th>
-                  <th>ID</th>
+                  <th className='p_t_hide_id'>ID</th>
                   <th>NAME</th>
-                  <th>BRAND</th>
-                  <th>SPECS</th>
-                  <th>YEAR</th>
+                  <th className='p_t_hide_brand'>BRAND</th>
+                  <th className='p_t_hide_specs'>SPECS</th>
+                  <th className='p_t_hide_year'>YEAR</th>
                   <th>PRICE</th>
                   <th>COUNT IN STOCK</th>
                   <th></th>
@@ -77,11 +80,11 @@ const CellListPage = ({ match }) => {
                     <td>
                       <img src={tv.image} alt={tv.name} />
                     </td>
-                    <td>{tv._id}</td>
+                    <td className='p_t_hide_id'>{tv._id}</td>
                     <td>{tv.name}</td>
-                    <td>{tv.brand}</td>
-                    <td>{tv.specs}</td>
-                    <td>{tv.year}</td>
+                    <td className='p_t_hide_brand'>{tv.brand}</td>
+                    <td className='p_t_hide_specs'>{tv.specs}</td>
+                    <td className='p_t_hide_year'>{tv.year}</td>
                     <td>${tv.price}</td>
                     <td>{tv.countInStock}</td>
                     <td>
@@ -103,7 +106,7 @@ const CellListPage = ({ match }) => {
                 </tbody>
               ))}
             </table>
-            <PaginateProduct pages={pages} isAdmin={true} />
+            <PaginateProduct pages={pages} isAdmin={true} adminRoute={'tvs'} />
           </>
         )}
       </div>
@@ -111,4 +114,4 @@ const CellListPage = ({ match }) => {
   )
 }
 
-export default CellListPage
+export default TvListPage

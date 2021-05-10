@@ -1,12 +1,12 @@
 .error_container {
-  background: #00b377;
+  background: $color-success;
   width: 70%;
   margin: 0 auto;
   position: relative;
   transition: background 0.3s ease-in-out;
   top: 100px;
   padding: 30px;
-  box-shadow: 1px 1px 12px #00b377;
+  box-shadow: 1px 1px 12px $color-success;
   text-align: center;
   border-radius: 0 50px 0 40px;
 
@@ -23,13 +23,13 @@
     margin-left: 20px;
     color: rgb(24, 24, 24);
     transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: rgb(253, 253, 253);
+    }
   }
-}
 
-.error_container:hover {
-  background: #00c986;
-}
-
-.error_container .link:hover {
-  color: rgb(253, 253, 253);
+  &:hover {
+    background: #00c986;
+  }
 }

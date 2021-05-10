@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { tvsList } from '../actions/tvActions'
 import Card from '../components/Card'
 import Loader from '../components/Loader'
-import { Message } from '../components/Messages'
-import ProductSort from '../components/ProductSort'
+import { ContentMessage, Message } from '../components/Messages'
+import { TvSort } from '../components/ProductSort'
 import { PaginateProduct } from '../components/Paginate'
 
 const TvsPage = ({ match }) => {
@@ -24,11 +24,16 @@ const TvsPage = ({ match }) => {
 
   return (
     <>
+      <ContentMessage
+        products={tvs}
+        contentMsgClass={loading ? 'empty' : 'info'}
+        text={'No Products!'}
+      />
       {loading && <Loader className='loader_container' />}
       {error && <Message className='danger'>{error}</Message>}
       {tvs && (
         <>
-          <ProductSort route={'tvs'} />
+          <TvSort />
           <div className='product_list'>
             {tvs.map((data) => (
               <div key={data._id} className='list_items'>
@@ -40,6 +45,7 @@ const TvsPage = ({ match }) => {
             pages={pages}
             keyword={keyword ? keyword : ''}
             brand={brand ? brand : ''}
+            route={'tvs'}
           />
         </>
       )}

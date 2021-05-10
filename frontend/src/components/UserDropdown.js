@@ -38,7 +38,7 @@ const UserDropdown = ({ openDropdown, closeDropdown }) => {
       {openDropdown && (
         <div className='user_dropdown_content' onMouseLeave={closeDropdown}>
           <Link
-            className='user_dropdown_content_link'
+            className='link'
             to={
               userInfo && userInfo.oauthId
                 ? `/profile/${userInfo._id}`
@@ -50,7 +50,7 @@ const UserDropdown = ({ openDropdown, closeDropdown }) => {
           {userInfo && userInfo.isAdmin && (
             <>
               <br />
-              <Link className='user_dropdown_content_link' to={`/admin`}>
+              <Link className='link' to={`/admin`}>
                 Admin
               </Link>
             </>

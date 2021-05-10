@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
-import CellPhonePage from './pages/CellPhonePage'
-import CellPhoneDetailsPage from './pages/CellPhoneDetailsPage'
 import CartItemsPage from './pages/CartItemsPage'
 import ShippingPage from './pages/ShippingPage'
 import PmethodPage from './pages/PmethodPage'
@@ -17,16 +15,32 @@ import UserUpdatePage from './pages/admin/users/UserUpdatePage'
 import OrderListPage from './pages/admin/orders/OrderListPage'
 import ProductPage from './pages/admin/products/ProductsPage'
 import ErrorPage from './pages/404'
+import OauthUserProfilePage from './pages/OauthUserProfilePage'
+import Footer from './components/Footer'
+
+import CellPhonePage from './pages/CellPhonePage'
+import CellPhoneDetailsPage from './pages/CellPhoneDetailsPage'
 import CellListPage from './pages/admin/products/cells/CellListPage'
 import CellCreate from './pages/admin/products/cells/CellCreate'
 import CellEdit from './pages/admin/products/cells/CellEdit'
-import Footer from './components/Footer'
-import OauthUserProfilePage from './pages/OauthUserProfilePage'
+
 import TvsPage from './pages/tvsPage'
 import TvDetailsPage from './pages/tvDetailsPage'
 import TvListPage from './pages/admin/products/tvs/TvListPage'
 import TvCreate from './pages/admin/products/tvs/TvCreate'
 import TvEdit from './pages/admin/products/tvs/TvEdit'
+
+import ComputerPage from './pages/ComputerPage'
+import ComputerListPage from './pages/admin/products/computers/ComputerListPage'
+import ComputerCreate from './pages/admin/products/computers/ComputerCreate'
+import ComputerEdit from './pages/admin/products/computers/ComputerEdit'
+import ComputerDetailsPage from './pages/computerDetailsPage'
+
+import AccessoryPage from './pages/AccessoryPage'
+import AccessoryListPage from './pages/admin/products/accessories/accessoryListPage'
+import AccessoryCreate from './pages/admin/products/accessories/accessoryCreate'
+import AccessoryDetailsPage from './pages/accessoryDetailsPage'
+import AccessoryEdit from './pages/admin/products/accessories/accessoryEdit'
 
 const App = () => {
   const userLogin = useSelector((state) => state.userLogin)
@@ -45,7 +59,7 @@ const App = () => {
           <Route path='/profile' component={ProfilePage} exact />
           <Route path='/profile/:id' component={OauthUserProfilePage} />
 
-          {/* CellPhones Routes */}
+          {/* CellPhone Routes */}
           <Route path='/cellphones' component={CellPhonePage} exact />
           <Route
             path='/cellphones/page/:pageNumber'
@@ -77,7 +91,7 @@ const App = () => {
           />
           <Route path='/cellphones/:id' component={CellPhoneDetailsPage} />
 
-          {/* Tvs Routes */}
+          {/* Tv Routes */}
           <Route path='/tvs' component={TvsPage} exact />
           <Route path='/tvs/page/:pageNumber' component={TvsPage} exact />
           <Route path='/tvs/sort/:sortBy' component={TvsPage} exact />
@@ -92,6 +106,70 @@ const App = () => {
             component={TvsPage}
           />
           <Route path='/tvs/:id' component={TvDetailsPage} />
+
+          {/* Computer Routes */}
+          <Route path='/computers' component={ComputerPage} exact />
+          <Route
+            path='/computers/page/:pageNumber'
+            component={ComputerPage}
+            exact
+          />
+          <Route
+            path='/computers/sort/:sortBy'
+            component={ComputerPage}
+            exact
+          />
+          <Route
+            path='/computers/search/:keyword'
+            component={ComputerPage}
+            exact
+          />
+          <Route
+            path='/computers/search/:keyword/page/:pageNumber'
+            component={ComputerPage}
+          />
+          <Route
+            path='/computers/brand/:brand'
+            component={ComputerPage}
+            exact
+          />
+          <Route
+            path='/computers/brand/:brand/page/:pageNumber'
+            component={ComputerPage}
+          />
+          <Route path='/computers/:id' component={ComputerDetailsPage} />
+
+          {/* Accessory Routes */}
+          <Route path='/accessories' component={AccessoryPage} exact />
+          <Route
+            path='/accessories/page/:pageNumber'
+            component={AccessoryPage}
+            exact
+          />
+          <Route
+            path='/accessories/sort/:sortBy'
+            component={AccessoryPage}
+            exact
+          />
+          <Route
+            path='/accessories/search/:keyword'
+            component={AccessoryPage}
+            exact
+          />
+          <Route
+            path='/accessories/search/:keyword/page/:pageNumber'
+            component={AccessoryPage}
+          />
+          <Route
+            path='/accessories/brand/:brand'
+            component={AccessoryPage}
+            exact
+          />
+          <Route
+            path='/accessories/brand/:brand/page/:pageNumber'
+            component={AccessoryPage}
+          />
+          <Route path='/accessories/:id' component={AccessoryDetailsPage} />
 
           <Route path='/cart/:id?' component={CartItemsPage} />
           {userInfo && userInfo.isAdmin && (
@@ -130,6 +208,43 @@ const App = () => {
               />
               <Route path='/admin/product/tvs/create' component={TvCreate} />
               <Route path='/admin/product/tvs/:id/edit' component={TvEdit} />
+
+              <Route
+                path='/admin/product/computers'
+                component={ComputerListPage}
+                exact
+              />
+              <Route
+                path='/admin/product/computers/page/:pageNumber'
+                component={ComputerListPage}
+                exact
+              />
+              <Route
+                path='/admin/product/computers/create'
+                component={ComputerCreate}
+              />
+              <Route
+                path='/admin/product/computers/:id/edit'
+                component={ComputerEdit}
+              />
+
+              <Route
+                path='/admin/product/accessories'
+                component={AccessoryListPage}
+                exact
+              />
+              <Route
+                path='/admin/product/accessories/page/:pageNumber'
+                component={AccessoryListPage}
+              />
+              <Route
+                path='/admin/product/accessories/create'
+                component={AccessoryCreate}
+              />
+              <Route
+                path='/admin/product/accessories/:id/edit'
+                component={AccessoryEdit}
+              />
             </>
           )}
           <Route component={ErrorPage} />

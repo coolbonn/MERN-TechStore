@@ -43,7 +43,7 @@ const OrderDetailsPage = ({ match }) => {
       const { data: clientId } = await axios.get('/api/config/paypal')
       const script = document.createElement('script')
       script.type = 'text/javascript'
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+      script.src = `https://www.paypal.com/${sdkReady}/js?client-id=${clientId}`
       script.async = true
       script.onload = () => {
         setSdkReady(true)
@@ -62,7 +62,7 @@ const OrderDetailsPage = ({ match }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, orderId, order, successPay, successDeliver])
+  }, [dispatch, orderId, order, successPay, successDeliver, sdkReady])
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(updateOrderToPaid(orderId, paymentResult))
@@ -75,6 +75,7 @@ const OrderDetailsPage = ({ match }) => {
   return (
     <div>
       {loading && <Loader className='loader_container' />}
+      {error && <Message className={'danger'}>{error}</Message>}
       {order && (
         <>
           {userInfo && userInfo.isAdmin ? (
@@ -94,9 +95,9 @@ const OrderDetailsPage = ({ match }) => {
             </Link>
           )}
           <div className='order_container'>
-            <div className='order_container_col_1'>
+            <div className='col_1'>
               <div className='shipping'>
-                <h2>Shipping</h2>
+                <h2>Shipping Shipping</h2>
                 <hr />
                 <h4>
                   Country: <span>{order.shippingAddress.country}</span>
@@ -138,11 +139,11 @@ const OrderDetailsPage = ({ match }) => {
                 )}
               </div>
               <div className='cart_items'>
-                <h2>Cart Items</h2>
+                <h2>Items</h2>
                 <hr />
-                <div className='cart_items_row'>
+                <div className='row'>
                   {order.orderItems.map((item) => (
-                    <div key={item._id} className='cart_item_row_content'>
+                    <div key={item._id} className='content'>
                       <img src={item.image} alt={item.name} />
                       <Link className='link' to={`/cellphones/${item._id}`}>
                         {item.name}
@@ -156,7 +157,7 @@ const OrderDetailsPage = ({ match }) => {
                 </div>
               </div>
             </div>
-            <div className='order_container_col_2'>
+            <div className='col_2'>
               <h2>Order Summery</h2>
               <div className='prices'>
                 <h4>

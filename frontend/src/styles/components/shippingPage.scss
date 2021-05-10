@@ -1,54 +1,70 @@
 .shipping_container {
   width: 40%;
   margin: 0 auto;
-  background: rgba(252, 243, 250, 0.514);
-  box-shadow: 1px 1px 5px rgb(1, 236, 91);
+  background: $bg-trans;
+  box-shadow: 1px 1px 5px $color-success;
   padding: 25px;
-}
 
-.shipping_container h1 {
-  text-align: center;
-}
+  h1 {
+    text-align: center;
+  }
 
-.shipping_container form {
-  display: flex;
-  flex-direction: column;
-}
+  @media (max-width: 900px) {
+    width: 70%;
 
-.shipping_container form label {
-  margin-top: 10px;
-  font-size: small;
-}
+    h1 {
+      font-size: $md;
+    }
+  }
 
-.shipping_container form input {
-  padding: 5px 0;
-  background: transparent;
-  margin-top: 5px;
-  outline: none;
-  border-color: #41ff90;
-  text-indent: 10px;
-  border-radius: 10px;
-  box-shadow: 1px 2px 8px rgb(12, 12, 12);
-  transition: box-shadow 0.3s ease-in-out;
-}
+  @media (max-width: 500px) {
+    width: 95%;
 
-.shipping_container form input:focus {
-  box-shadow: 1px 2px 8px rgb(1, 236, 91);
-}
+    h1 {
+      font-size: $sm;
+    }
+  }
 
-.shipping_container form button {
-  padding: 5px 0;
-  background: transparent;
-  border-color: #00bd39;
-  font-family: 'Montserrat', sans-serif;
-  outline: none;
-  transition: color 0.3s ease-in-out;
-  margin-top: 30px;
-  cursor: pointer;
-  border-radius: 10px;
-}
+  form {
+    display: flex;
+    flex-direction: column;
 
-.shipping_container form button:hover {
-  background: rgb(22, 22, 22);
-  color: #eee;
+    label {
+      margin-top: 10px;
+      font-size: small;
+    }
+
+    input {
+      padding: 5px 0;
+      background: transparent;
+      margin-top: 5px;
+      outline: none;
+      border-color: $color-primary;
+      text-indent: 10px;
+      border-radius: 10px;
+      box-shadow: 1px 2px 8px $color-dark;
+      transition: box-shadow 0.3s ease-in-out;
+
+      &:focus {
+        box-shadow: 1px 2px 8px $color-success;
+      }
+    }
+
+    button {
+      padding: 5px 0;
+      background: transparent;
+      border-color: $color-primary;
+      font-family: $fonts-primary;
+      outline: none;
+      transition: color 0.3s ease-in-out;
+      margin-top: 30px;
+      cursor: pointer;
+      border-radius: 10px;
+
+      &:hover {
+        background: $color-dark;
+        color: $color-lighter;
+      }
+    }
+  }
 }

@@ -10,6 +10,7 @@ import {
 } from './reducers/cellPhoneReducers'
 import {
   getAllUsersReducer,
+  userDeleteProfileReducer,
   userDeleteReducer,
   userDetailsReducer,
   userDetailsUpdateReducer,
@@ -20,6 +21,7 @@ import {
 import { cartReducer } from './reducers/cartReducers'
 import {
   createOrderReducer,
+  deleteMyOrderReducer,
   getOrderDetailsReducer,
   myOauthUserOrderListReducer,
   myOrderListReducer,
@@ -39,6 +41,21 @@ import {
   tvEditReducer,
   tvListReducer,
 } from './reducers/tvReducers'
+import {
+  computerCreateReducer,
+  computerDeleteReducer,
+  computerDetailsReducer,
+  computerEditReducer,
+  computerListReducer,
+} from './reducers/computerReducers'
+import {
+  accessoryCreateReducer,
+  accessoryDeleteReducer,
+  accessoryDetailsReducer,
+  accessoryEditReducer,
+  accessoryListReducer,
+} from './reducers/accessoryReducers'
+import { recentProductReducer } from './reducers/productReducers'
 
 const reducer = combineReducers({
   cells: cellPhoneReducer,
@@ -51,10 +68,22 @@ const reducer = combineReducers({
   tvDelete: tvDeleteReducer,
   tvCreate: tvCreateReducer,
   tvEdit: tvEditReducer,
+  computers: computerListReducer,
+  computerDetails: computerDetailsReducer,
+  computerDelete: computerDeleteReducer,
+  computerCreate: computerCreateReducer,
+  computerEdit: computerEditReducer,
+  accessories: accessoryListReducer,
+  accessoryDetails: accessoryDetailsReducer,
+  accessoryDelete: accessoryDeleteReducer,
+  accessoryCreate: accessoryCreateReducer,
+  accessoryEdit: accessoryEditReducer,
+  recentProduct: recentProductReducer,
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
   userDetails: userDetailsReducer,
   userDetailsUpdate: userDetailsUpdateReducer,
+  userDeleteProfile: userDeleteProfileReducer,
   users: getAllUsersReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,
@@ -66,6 +95,7 @@ const reducer = combineReducers({
   orderPaid: updateOrderToPaidReducer,
   orderDelivered: updateOrderToDeliveredReducer,
   myOrders: myOrderListReducer,
+  deleteMyOrder: deleteMyOrderReducer,
   myOauthOrders: myOauthUserOrderListReducer,
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,

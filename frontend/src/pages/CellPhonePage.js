@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cellPhonesList } from '../actions/cellPhoneActions'
 import Card from '../components/Card'
 import Loader from '../components/Loader'
-import { Message } from '../components/Messages'
-import ProductSort from '../components/ProductSort'
+import { ContentMessage, Message } from '../components/Messages'
+import { CellSort } from '../components/ProductSort'
 import { PaginateProduct } from '../components/Paginate'
 
 const CellPhonePage = ({ match }) => {
@@ -24,11 +24,16 @@ const CellPhonePage = ({ match }) => {
 
   return (
     <>
+      <ContentMessage
+        products={cellphones}
+        contentMsgClass={loading ? 'empty' : 'info'}
+        text={'No Products!'}
+      />
       {loading && <Loader className='loader_container' />}
       {error && <Message className='danger'>{error}</Message>}
       {cellphones && (
         <>
-          <ProductSort route={'cellphones'} />
+          <CellSort />
           <div className='product_list'>
             {cellphones.map((data) => (
               <div key={data._id} className='list_items'>
@@ -40,6 +45,7 @@ const CellPhonePage = ({ match }) => {
             pages={pages}
             keyword={keyword ? keyword : ''}
             brand={brand ? brand : ''}
+            route={'cellphones'}
           />
         </>
       )}

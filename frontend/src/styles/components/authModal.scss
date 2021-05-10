@@ -4,18 +4,22 @@
   right: 0;
   font-size: 1.5rem;
   padding: 5px;
-  color: rgb(160, 0, 40);
+  color: $color-danger;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
-}
 
-.modal-close:hover {
-  color: rgb(255, 0, 0);
+  &:hover {
+    color: rgb(255, 0, 0);
+  }
 }
 
 .h1 {
   font-weight: bold;
   margin: 0;
+
+  @media (max-width: 700px) {
+    font-size: $sm;
+  }
 }
 
 .p {
@@ -24,6 +28,10 @@
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 0 30px;
+
+  @media (max-width: 700px) {
+    font-size: 9px;
+  }
 }
 
 .span {
@@ -35,6 +43,11 @@
   font-size: 14px;
   text-decoration: none;
   margin: 15px 0;
+
+  @media (max-width: 700px) {
+    font-size: 9px;
+    margin: 5px 0;
+  }
 }
 
 .modal-wrapper {
@@ -56,6 +69,16 @@
   width: 768px;
   max-width: 100%;
   min-height: 550px;
+
+  @media (max-width: 700px) {
+    max-width: 70%;
+    min-height: 350px;
+  }
+
+  @media (max-width: 450px) {
+    max-width: 98%;
+    min-height: 350px;
+  }
 }
 
 .form-container form {
@@ -67,11 +90,19 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 700px) {
+    padding: 0 20px;
+  }
 }
 
 .social-container {
   display: flex;
   margin: 20px 0;
+
+  @media (max-width: 700px) {
+    padding: 5px 0;
+  }
 }
 
 .social-container .modal-link {
@@ -84,6 +115,30 @@
   height: 40px;
   width: 40px;
   cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+
+  @media (max-width: 700px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  .fa-facebook-f {
+    transition: color 0.4s ease-in-out;
+  }
+
+  .fa-google-plus-g {
+    transition: color 0.4s ease-in-out;
+  }
+
+  &:hover {
+    border-color: $color-dark;
+  }
+  &:hover > .fa-facebook-f {
+    color: #3b5998;
+  }
+  &:hover > .fa-google-plus-g {
+    color: #db4a39;
+  }
 }
 
 .form-container input {
@@ -92,6 +147,11 @@
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+
+  @media (max-width: 700px) {
+    padding: 8px 15px;
+    margin: 5px 0;
+  }
 }
 
 .modal-btn {
@@ -108,6 +168,11 @@
   transition: transform 80ms ease-in;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
+
+  @media (max-width: 700px) {
+    font-size: 9px;
+    padding: 6px 45px;
+  }
 }
 
 .modal-btn:hover {

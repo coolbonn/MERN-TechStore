@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUserDetails, userDetailsUpdate } from '../actions/userActions'
-import { myOrderList, orderDelete } from '../actions/orderActions'
+import {
+  getUserDetails,
+  userDetailsUpdate,
+  userDeleteProfile,
+  logoutAction,
+} from '../actions/userActions'
+import {
+  myOrderList,
+  deleteMyOrder,
+  orderDelete,
+} from '../actions/orderActions'
 import Loader from '../components/Loader'
-import { Message } from '../components/Messages'
+import { ContentMessage, Message, AlertMessage } from '../components/Messages'
 
-const ProfilePage = () => {
+const ProfilePage = ({ history }) => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [age, setAge] = useState('')
@@ -24,12 +33,22 @@ const ProfilePage = () => {
   const updUser = useSelector((state) => state.userDetailsUpdate)
   const { success, error: errorUpdateUser } = updUser
 
+  const deleteMyOrders = useSelector((state) => state.deleteMyOrder)
+  const { success: successDelete, error: errorDelete } = deleteMyOrders
+
   const deleteOrder = useSelector((state) => state.orderDelete)
   const {
-    success: successDelete,
-    loading: loadingDelete,
-    error: errorDelete,
+    success: successDeleteOrder,
+    loading: loadingDeleteOrder,
+    error: errorDeleteOrder,
   } = deleteOrder
+
+  const deleteUser = useSelector((state) => state.userDeleteProfile)
+  const {
+    success: successDeleteProfile,
+    loading: loadingDeleteProfile,
+    error: errorDeleteProfile,
+  } = deleteUser
 
   const dispatch = useDispatch()
 
@@ -42,7 +61,19 @@ const ProfilePage = () => {
       setEmail(user.email)
       setAge(user.age)
     }
-  }, [dispatch, user, successDelete])
+
+    if (successDeleteProfile) {
+      dispatch(logoutAction())
+      history.push('/')
+    }
+  }, [
+    dispatch,
+    user,
+    successDelete,
+    successDeleteOrder,
+    history,
+    successDeleteProfile,
+  ])
 
   const onSubmitHandler = (e) => {
     e.preventDefault()
@@ -63,21 +94,34 @@ const ProfilePage = () => {
   }
 
   const deleteOrderHandler = (id) => {
-    if (window.confirm('Are you sure?')) {
-      dispatch(orderDelete(id))
-      window.location.reload()
-    }
+    dispatch(orderDelete(id))
+    window.location.reload()
+  }
+
+  const deleteUserHandler = () => {
+    dispatch(userDeleteProfile())
+    dispatch(deleteMyOrder())
   }
 
   return (
     <>
-      <div className='profile_container' onClick={() => setShowAlert(false)}>
-        <div className='profile_container_col_1'>
+      <div className='profile_container'>
+        {loadingDeleteProfile && <Loader />}
+        {errorDeleteProfile && (
+          <Message className='danger'>{errorDeleteProfile}</Message>
+        )}
+        {showAlert && (
+          <AlertMessage
+            text={'Are You Sure?'}
+            btnTxt={'Delete'}
+            onCancel={() => setShowAlert(false)}
+            onDelete={deleteUserHandler}
+          />
+        )}
+        <div className='col_1'>
           <h2>Profile Information</h2>
-          {showAlert && success && (
-            <Message className='success'>Update Successful</Message>
-          )}
-          {showAlert && errorUpdateUser && (
+          {success && <Message className='success'>Update Successful</Message>}
+          {errorUpdateUser && (
             <Message className='danger'>{errorUpdateUser}</Message>
           )}
           <form onSubmit={onSubmitHandler}>
@@ -124,28 +168,31 @@ const ProfilePage = () => {
 
             <button type='submit'>Update</button>
           </form>
+          <button onClick={() => setShowAlert(true)}>Delete Account</button>
         </div>
-        <div className='profile_container_col_2'>
+        <div className='col_2'>
           <h2>My Orders</h2>
-          {successDelete && (
-            <Message className='success'>Remove Successful</Message>
+          {loadingDeleteOrder && (
+            <Loader className='profile_loader_container' />
+          )}
+          {errorDeleteOrder && (
+            <Message className={'danger'}>{errorDeleteOrder}</Message>
           )}
           {loading && <Loader className='profile_loader_container' />}
-          {loadingDelete && <Loader className='profile_loader_container' />}
-          {orders && orders.length === 0 && (
-            <div className='prof_info'>
-              <h3>No Orders!</h3>
-            </div>
-          )}
+          <ContentMessage
+            products={orders}
+            contentMsgClass={'prof_info'}
+            text={'No Orders!'}
+          />
           <table>
             <thead>
               <tr>
-                <th>ID</th>
+                <th className='id'>ID</th>
                 <th>ITEMS</th>
                 <th>PRICE</th>
-                <th>CREATED AT</th>
+                <th className='crt'>CREATED AT</th>
                 <th>PAID</th>
-                <th>DELIVERED</th>
+                <th className='deli'>DELIVERED</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -154,45 +201,57 @@ const ProfilePage = () => {
             {errorOrders ? <Message className='danger' /> : ''}
             {orders &&
               orders.map((order) => (
-                <tbody key={order._id}>
-                  <tr>
-                    <td>{order._id}</td>
-                    <td>{order.orderItems.length}</td>
-                    <td>${order.totalPrice}</td>
-                    <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>
-                      {order.isPaid ? (
-                        order.paidAt.substring(0, 10)
-                      ) : (
-                        <Link className='link' to={`/order/${order._id}`}>
-                          Pay Now
-                        </Link>
-                      )}
-                    </td>
-                    <td>
-                      {order.isDelivered ? (
-                        order.deliveredAt.substring(0, 10)
-                      ) : (
-                        <i className='fas fa-times'></i>
-                      )}
-                    </td>
-                    <td>
-                      {!order.isPaid ? (
-                        <p title="You Haven't Paid Yet">Details</p>
-                      ) : (
-                        <Link to={`/order/${order._id}`} className='link'>
-                          Details
-                        </Link>
-                      )}
-                    </td>
-                    <td>
-                      <i
-                        className='fas fa-trash-alt'
-                        onClick={() => deleteOrderHandler(order._id)}
-                      ></i>
-                    </td>
-                  </tr>
-                </tbody>
+                <>
+                  <tbody key={order._id}>
+                    <tr>
+                      <td className='id'>{order._id}</td>
+                      <td>{order.orderItems.length}</td>
+                      <td>${order.totalPrice}</td>
+                      <td className='crt'>
+                        {order.createdAt.substring(0, 10)}
+                      </td>
+                      <td>
+                        {order.isPaid ? (
+                          order.paidAt.substring(0, 10)
+                        ) : (
+                          <Link className='link' to={`/order/${order._id}`}>
+                            Pay Now
+                          </Link>
+                        )}
+                      </td>
+                      <td className='deli'>
+                        {order.isDelivered ? (
+                          order.deliveredAt.substring(0, 10)
+                        ) : (
+                          <i className='fas fa-times'></i>
+                        )}
+                      </td>
+                      <td>
+                        {!order.isPaid ? (
+                          <p title="You Haven't Paid Yet">Details</p>
+                        ) : (
+                          <Link to={`/order/${order._id}`} className='link'>
+                            Details
+                          </Link>
+                        )}
+                      </td>
+                      <td>
+                        <i
+                          className='fas fa-trash-alt'
+                          onClick={() => setShowAlert(true)}
+                        ></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                  {showAlert && (
+                    <AlertMessage
+                      text={'Are You Sure?'}
+                      btnTxt={'Delete'}
+                      onCancel={() => setShowAlert(false)}
+                      onDelete={() => deleteOrderHandler(order._id)}
+                    />
+                  )}
+                </>
               ))}
           </table>
         </div>
