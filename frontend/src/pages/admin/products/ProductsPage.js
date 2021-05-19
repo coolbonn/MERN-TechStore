@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Meta from '../../../components/Meta'
 
 const ProductPage = () => {
   return (
@@ -8,6 +9,7 @@ const ProductPage = () => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='product_container'>
+        <Meta title={'Products Home Page'} />
         <Link className='box' to='/admin/product/cells'>
           <i className='fas fa-mobile-alt'></i>
           <span>Cell Phones</span>

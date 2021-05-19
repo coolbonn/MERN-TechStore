@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import GoBack from '../components/GoBack'
+import Meta from '../components/Meta'
 
 const CartItemsPage = ({ history, location, match }) => {
   const cellId = match.params.id
@@ -54,6 +55,11 @@ const CartItemsPage = ({ history, location, match }) => {
         <>
           <GoBack />
           <div className='cart_grid'>
+            <Meta
+              title={
+                cartItems.length === 0 ? 'No Cart Items' : 'Your Cart Items'
+              }
+            />
             <div className='col_1'>
               {cartItems.length === 0 ? (
                 <h1>Your Cart is Empty</h1>

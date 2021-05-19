@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { ContentMessage, Message } from '../components/Messages'
 import { AccessorySort } from '../components/ProductSort'
 import { PaginateProduct } from '../components/Paginate'
+import Meta from '../components/Meta'
 
 const AccessoryPage = ({ match }) => {
   const sortBy = match.params.sortBy
@@ -29,6 +30,10 @@ const AccessoryPage = ({ match }) => {
         products={accessories}
         contentMsgClass={loading ? 'empty' : 'info'}
         text={'No Products!'}
+      />
+      <Meta
+        title={'Accessories'}
+        content={'Choose accessories that fit your needs'}
       />
       {loading && <Loader className='loader_container' />}
       {error && <Message className='danger'>{error}</Message>}

@@ -34,7 +34,6 @@ export const Facebook = ({ close }) => {
       appId='887344535143423'
       autoLoad={false}
       fields='name,email,picture'
-      scope='public_profile,user_friends,user_actions.books'
       callback={responseFacebook}
       render={(renderProps) => (
         <span
@@ -56,7 +55,6 @@ export const Google = ({ close }) => {
   const dispatch = useDispatch()
 
   const responseGoogle = ({ profileObj }) => {
-    console.log(profileObj)
     dispatch(
       oauthUserRegisterAction(
         profileObj.googleId,

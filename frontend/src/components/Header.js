@@ -15,8 +15,8 @@ const Header = () => {
   return (
     <div>
       <header className='header'>
-        <NavLink to='/' className='logo'>
-          <img src={'/images/tech-logo.png'} alt='Logo' width={100} />
+        <NavLink to='/' className='logo' title='Tech Store | Home'>
+          <img src={'/images/tech-store-logo.png'} alt='Logo' width={80} />
         </NavLink>
         <nav>
           <div className='page-links'>
@@ -56,8 +56,10 @@ const Header = () => {
               activeClassName='active'
               to='/cart'
             >
-              <span>Cart</span>
-              <i className='fas fa-shopping-cart'></i>
+              <div className='cart'>
+                <span>Cart</span>
+                <i className='fas fa-shopping-cart'></i>
+              </div>
             </NavLink>
             {!userInfo ? (
               <div className='auth-btn' onClick={() => setIsOpen(true)}>

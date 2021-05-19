@@ -10,6 +10,7 @@ import { Message } from '../../../../components/Messages'
 import { ACCESSORY_EDIT_RESET } from '../../../../constants/productConstants'
 import ProductInput from '../../../../components/ProductInput'
 import { Link } from 'react-router-dom'
+import Meta from '../../../../components/Meta'
 
 const AccessoryEdit = ({ history, match }) => {
   const accId = match.params.id
@@ -210,6 +211,7 @@ const AccessoryEdit = ({ history, match }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='create_product_container'>
+        <Meta title={'Update Accessories'} />
         {loading && <Loader />}
         {loadingEdit && <Loader />}
         {errorEdit && <Message className='danger'>{errorEdit}</Message>}

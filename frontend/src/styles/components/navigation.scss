@@ -107,30 +107,35 @@ header {
         font-weight: 800;
       }
 
-      span {
-        color: $color-dark;
-
-        @media (min-width: 1500px) {
-          font-size: $md;
-        }
-
-        &:hover {
+      .cart {
+        span {
           color: $color-dark;
-          font-weight: 800;
+
+          @media (min-width: 1500px) {
+            font-size: $md;
+          }
         }
-      }
 
-      .fa-shopping-cart {
-        font-size: 1.1rem;
-        color: $color-secondary;
-        margin-right: 20px;
+        .fa-shopping-cart {
+          font-size: 1.1rem;
+          color: $color-secondary;
+          margin-right: 20px;
+          transition: color 0.3s ease-in-out;
 
-        @media (min-width: 1500px) {
-          font-size: $md;
+          @media (min-width: 1500px) {
+            font-size: $md;
+          }
         }
 
         &:hover {
-          color: rgb(0, 0, 0);
+          span {
+            color: $color-darker;
+            font-weight: 800;
+          }
+
+          .fa-shopping-cart {
+            color: $color-dark;
+          }
         }
       }
 

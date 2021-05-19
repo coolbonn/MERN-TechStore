@@ -10,6 +10,7 @@ import Loader from '../../../../components/Loader'
 import { Message } from '../../../../components/Messages'
 import { CELL_EDIT_RESET } from '../../../../constants/productConstants'
 import ProductInput from '../../../../components/ProductInput'
+import Meta from '../../../../components/Meta'
 
 const CellEdit = ({ history, match }) => {
   const cellId = match.params.id
@@ -210,6 +211,7 @@ const CellEdit = ({ history, match }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='create_product_container'>
+        <Meta title={'Update Cell Phones'} />
         {loading && <Loader />}
         {loadingEdit && <Loader />}
         {errorEdit && <Message className='danger'>{errorEdit}</Message>}

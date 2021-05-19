@@ -2,23 +2,29 @@ import React, { useState } from 'react'
 import ReactDom from 'react-dom'
 import Register from './Register'
 import Login from './Login'
-import { Transition } from 'react-spring/renderprops'
+import { useTransition, animated } from 'react-spring'
 
 const AuthModal = ({ onShut, isOpen, modalClose }) => {
   const [addClass, setAddClass] = useState('')
 
+  const transitions = useTransition(isOpen, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    reverse: isOpen,
+    delay: 200,
+  })
+
   return ReactDom.createPortal(
     <>
-      <Transition
-        items={isOpen}
-        from={{ opacity: 0 }}
-        enter={{ opacity: 1 }}
-        leave={{ opacity: 0 }}
-      >
-        {(isOpen) =>
-          isOpen &&
-          ((props) => (
-            <div style={props} className='modal-wrapper' onClick={modalClose}>
+      {transitions(
+        (styles, isOpen) =>
+          isOpen && (
+            <animated.div
+              style={styles}
+              className='modal-wrapper'
+              onClick={modalClose}
+            >
               <div className={`modal-container ${addClass && addClass}`}>
                 <i className='fas fa-times modal-close' onClick={onShut}></i>
                 <div className='form-container sign-up-container'>
@@ -59,10 +65,9 @@ const AuthModal = ({ onShut, isOpen, modalClose }) => {
                   </div>
                 </div>
               </div>
-            </div>
-          ))
-        }
-      </Transition>
+            </animated.div>
+          )
+      )}
     </>,
     document.getElementById('portal')
   )

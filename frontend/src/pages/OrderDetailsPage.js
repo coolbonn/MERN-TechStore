@@ -14,6 +14,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants'
+import Meta from '../components/Meta'
 
 const OrderDetailsPage = ({ match }) => {
   const orderId = match.params.id
@@ -95,6 +96,9 @@ const OrderDetailsPage = ({ match }) => {
             </Link>
           )}
           <div className='order_container'>
+            <Meta
+              title={`${order.shippingAddress.country} || ${order.paymentMethod}`}
+            />
             <div className='col_1'>
               <div className='shipping'>
                 <h2>Shipping Shipping</h2>

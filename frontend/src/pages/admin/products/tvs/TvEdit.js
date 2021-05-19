@@ -7,6 +7,7 @@ import Loader from '../../../../components/Loader'
 import { Message } from '../../../../components/Messages'
 import { TV_EDIT_RESET } from '../../../../constants/productConstants'
 import ProductInput from '../../../../components/ProductInput'
+import Meta from '../../../../components/Meta'
 
 const TvEdit = ({ history, match }) => {
   const tvId = match.params.id
@@ -207,6 +208,7 @@ const TvEdit = ({ history, match }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='create_product_container'>
+        <Meta title={'Update TV'} />
         {loading && <Loader />}
         {loadingEdit && <Loader />}
         {errorEdit && <Message className='danger'>{errorEdit}</Message>}

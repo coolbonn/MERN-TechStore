@@ -5,6 +5,7 @@ import Loader from '../../../../components/Loader'
 import { Message } from '../../../../components/Messages'
 import { tvDelete, tvsList } from '../../../../actions/tvActions'
 import { PaginateProduct } from '../../../../components/Paginate'
+import Meta from '../../../../components/Meta'
 
 const TvListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
@@ -48,6 +49,7 @@ const TvListPage = ({ match }) => {
         </Link>
       </div>
       <div className='product_list_container'>
+        <Meta title={'All TVs'} />
         {loadingDelete && <Loader />}
         {errorDelete && <Message className='danger'>{errorDelete}</Message>}
         {loading && <Loader className='loader_container' />}

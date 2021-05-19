@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { savePaymentMethod } from '../actions/cartActions'
+import Meta from '../components/Meta'
 
 const PmethodPage = ({ history }) => {
   const cart = useSelector((state) => state.cart)
@@ -27,6 +28,7 @@ const PmethodPage = ({ history }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='p_method_container'>
+        <Meta title={'Payment Method'} />
         <h1>Payment Method</h1>
         <form onSubmit={onSubmitHandler}>
           <div className='p_method'>

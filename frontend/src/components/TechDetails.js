@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { PopAlert } from './Messages'
+import Meta from './Meta'
 
 const TechDetails = ({
   data,
@@ -15,6 +16,7 @@ const TechDetails = ({
     <>
       {data && (
         <div className='detail_grid'>
+          <Meta title={data.name} content={data.specs} />
           <div className='row_1'>
             <div className='col_1'>
               <img
@@ -76,7 +78,7 @@ const TechDetails = ({
               {message && (
                 <PopAlert
                   close={noMessage}
-                  text={'You Must Be Logged In to Add to Cart!'}
+                  text={'You Must Be Logged In to Use This Feature!'}
                 />
               )}
               <button

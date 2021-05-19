@@ -7,6 +7,7 @@ import { Message } from '../../../../components/Messages'
 import { TV_CREATE_RESET } from '../../../../constants/productConstants'
 import ProductInput from '../../../../components/ProductInput'
 import { Link } from 'react-router-dom'
+import Meta from '../../../../components/Meta'
 
 const TvCreate = ({ history }) => {
   const [name, setName] = useState('Test Name')
@@ -190,6 +191,7 @@ const TvCreate = ({ history }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='create_product_container'>
+        <Meta title={'Create TV'} />
         {loading && <Loader />}
         {error && <Message className='danger'>{error}</Message>}
         <h2>Create Product</h2>

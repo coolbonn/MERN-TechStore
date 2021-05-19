@@ -8,6 +8,7 @@ import {
   computersList,
 } from '../../../../actions/computerActions'
 import { PaginateProduct } from '../../../../components/Paginate'
+import Meta from '../../../../components/Meta'
 
 const ComputerListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
@@ -51,6 +52,7 @@ const ComputerListPage = ({ match }) => {
         </Link>
       </div>
       <div className='product_list_container'>
+        <Meta title={'All Computers'} />
         {loadingDelete && <Loader />}
         {errorDelete && <Message className='danger'>{errorDelete}</Message>}
         {loading && <Loader className='loader_container' />}

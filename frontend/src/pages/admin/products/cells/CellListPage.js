@@ -8,6 +8,7 @@ import {
   cellPhonesList,
 } from '../../../../actions/cellPhoneActions'
 import { PaginateProduct } from '../../../../components/Paginate'
+import Meta from '../../../../components/Meta'
 
 const CellListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
@@ -26,14 +27,15 @@ const CellListPage = ({ match }) => {
 
   useEffect(() => {
     dispatch(cellPhonesList('', '', '', pageNumber))
+
+    if (successDelete) {
+      window.location.reload()
+    }
   }, [dispatch, successDelete, pageNumber])
 
   const deleteCellHandler = (id) => {
     if (window.confirm('Are You Sure?')) {
       dispatch(cellPhoneDelete(id))
-      if (successDelete) {
-        window.location.reload()
-      }
     }
   }
 
@@ -51,6 +53,7 @@ const CellListPage = ({ match }) => {
         </Link>
       </div>
       <div className='product_list_container'>
+        <Meta title={'All Cell Phones'} />
         {loadingDelete && <Loader />}
         {errorDelete && <Message className='danger'>{errorDelete}</Message>}
         {loading && <Loader className='loader_container' />}

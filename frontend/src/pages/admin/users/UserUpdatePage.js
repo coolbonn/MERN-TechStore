@@ -5,6 +5,7 @@ import { getUserDetails, userUpdateAction } from '../../../actions/userActions'
 import { USER_UPDATE_RESET } from '../../../constants/userConstants'
 import { Message } from '../../../components/Messages'
 import Loader from '../../../components/Loader'
+import Meta from '../../../components/Meta'
 
 const UserUpdatePage = ({ history, match }) => {
   const userId = match.params.id
@@ -53,6 +54,7 @@ const UserUpdatePage = ({ history, match }) => {
       </Link>
       {loadingUpdate && <Loader />}
       <div className='userUpdate_container'>
+        <Meta title={'Update User'} />
         <h2>Update User</h2>
         {errorUpdate && <Message className='danger'>{errorUpdate}</Message>}
         {loading ? (

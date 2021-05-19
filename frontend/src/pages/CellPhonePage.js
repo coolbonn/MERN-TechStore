@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { ContentMessage, Message } from '../components/Messages'
 import { CellSort } from '../components/ProductSort'
 import { PaginateProduct } from '../components/Paginate'
+import Meta from '../components/Meta'
 
 const CellPhonePage = ({ match }) => {
   const sortBy = match.params.sortBy
@@ -28,6 +29,10 @@ const CellPhonePage = ({ match }) => {
         products={cellphones}
         contentMsgClass={loading ? 'empty' : 'info'}
         text={'No Products!'}
+      />
+      <Meta
+        title={'Cell Phones'}
+        content={'Choose cell phones that fit your needs'}
       />
       {loading && <Loader className='loader_container' />}
       {error && <Message className='danger'>{error}</Message>}

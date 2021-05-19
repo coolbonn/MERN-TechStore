@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { ContentMessage, Message } from '../components/Messages'
 import { TvSort } from '../components/ProductSort'
 import { PaginateProduct } from '../components/Paginate'
+import Meta from '../components/Meta'
 
 const TvsPage = ({ match }) => {
   const sortBy = match.params.sortBy
@@ -29,6 +30,7 @@ const TvsPage = ({ match }) => {
         contentMsgClass={loading ? 'empty' : 'info'}
         text={'No Products!'}
       />
+      <Meta title={'Tvs'} content={'Choose tvs that fit your needs'} />
       {loading && <Loader className='loader_container' />}
       {error && <Message className='danger'>{error}</Message>}
       {tvs && (

@@ -5,6 +5,7 @@ import { getAllUsers, userDeleteAction } from '../../../actions/userActions'
 import { Message, AlertMessage } from '../../../components/Messages'
 import Loader from '../../../components/Loader'
 import { PaginateUser } from '../../../components/Paginate'
+import Meta from '../../../components/Meta'
 
 const UsersListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
@@ -21,11 +22,14 @@ const UsersListPage = ({ match }) => {
 
   useEffect(() => {
     dispatch(getAllUsers(pageNumber))
+
+    if (success) {
+      window.location.reload()
+    }
   }, [dispatch, success, pageNumber])
 
   const deleteUserHandler = (id) => {
     dispatch(userDeleteAction(id))
-    window.location.reload()
   }
 
   return (
@@ -35,6 +39,7 @@ const UsersListPage = ({ match }) => {
           <i className='fas fa-arrow-circle-left'></i>
         </Link>
         <div className='count'>
+          <Meta title={'All Users'} />
           <h3>Total Users: {count === 0 ? 0 : count}</h3>
         </div>
       </div>

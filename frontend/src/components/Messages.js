@@ -1,31 +1,35 @@
 import React from 'react'
 
-import { Spring } from 'react-spring/renderprops'
+import { useSpring, animated } from 'react-spring'
 
 export const PopAlert = ({ text, close }) => {
+  const styles = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
+
   return (
-    <Spring
-      from={{ opacity: 0, transform: 'scale(0)' }}
-      to={{ opacity: 1, transform: 'scale(1)' }}
-    >
-      {(props) => (
-        <div style={props} className='popalert_container' onClick={close}>
-          <div className='popalert_box'>
-            <i className='fas fa-times' onClick={close}></i>
-            <h4>{text}</h4>
-          </div>
+    <animated.div style={styles}>
+      <div className='popalert_container' onClick={close}>
+        <div className='popalert_box'>
+          <i className='fas fa-times' onClick={close}></i>
+          <h4>{text}</h4>
         </div>
-      )}
-    </Spring>
+      </div>
+    </animated.div>
   )
 }
 
 export const AlertMessage = ({ text, btnTxt, onCancel, onDelete }) => {
+  const styles = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  })
   return (
-    <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
-      {(props) => (
+    <>
+      <animated.div style={styles}>
         <div className='alertMsg_background'>
-          <div style={props} className='alertMsg_container'>
+          <div className='alertMsg_container'>
             <div className='body'>
               <p>{text}</p>
             </div>
@@ -39,8 +43,8 @@ export const AlertMessage = ({ text, btnTxt, onCancel, onDelete }) => {
             </div>
           </div>
         </div>
-      )}
-    </Spring>
+      </animated.div>
+    </>
   )
 }
 

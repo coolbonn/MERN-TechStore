@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userRegisterAction } from '../actions/userActions'
 import Loader from './Loader'
-import { Message } from './Messages'
 
 const Register = ({ onShut }) => {
   const [username, setusername] = useState('')
@@ -10,7 +9,7 @@ const Register = ({ onShut }) => {
   const [age, setAge] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState('')
+  const [errMsg, setErrMsg] = useState('')
 
   const userRegister = useSelector((state) => state.userRegister)
   const { loading, error, userInfo } = userRegister
@@ -25,14 +24,22 @@ const Register = ({ onShut }) => {
       setAge('')
       setPassword('')
       setConfirmPassword('')
+    } else {
+      setErrMsg(error)
     }
-  }, [userInfo, onShut])
+
+    const timeOut = setTimeout(() => {
+      setErrMsg('')
+    }, 3000)
+
+    return () => clearTimeout(timeOut)
+  }, [userInfo, onShut, error])
 
   const submitHandler = (e) => {
     e.preventDefault()
 
     if (password !== confirmPassword) {
-      setMessage('Password does not match')
+      setErrMsg('Password does not match')
     } else {
       dispatch(userRegisterAction(username, email, age, password))
     }
@@ -41,7 +48,7 @@ const Register = ({ onShut }) => {
   return (
     <>
       {loading && <Loader />}
-      {error && <Message className='danger'>{error}</Message>}
+      {error && <h3 className='errMsg'>{errMsg}</h3>}
       <form onSubmit={submitHandler}>
         <h1 className='h1'>Create Account</h1>
         <span className='span'>Use your email for registration</span>
@@ -50,32 +57,36 @@ const Register = ({ onShut }) => {
           placeholder='User Name'
           value={username}
           onChange={(e) => setusername(e.target.value)}
+          required
         />
         <input
           type='email'
           placeholder='Email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type='number'
           placeholder='age'
           value={age}
           onChange={(e) => setAge(e.target.value)}
+          required
         />
         <input
           type='password'
           placeholder='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <input
           type='password'
           placeholder='Confirm Password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          required
         />
-        <p>{message}</p>
         <button className='modal-btn'>Sign Up</button>
       </form>
     </>

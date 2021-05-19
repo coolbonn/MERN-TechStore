@@ -14,6 +14,7 @@ import {
 } from '../actions/orderActions'
 import Loader from '../components/Loader'
 import { ContentMessage, Message, AlertMessage } from '../components/Messages'
+import Meta from '../components/Meta'
 
 const ProfilePage = ({ history }) => {
   const [username, setUsername] = useState('')
@@ -124,6 +125,7 @@ const ProfilePage = ({ history }) => {
           {errorUpdateUser && (
             <Message className='danger'>{errorUpdateUser}</Message>
           )}
+          <Meta title={`${user.username}'s Profile`} />
           <form onSubmit={onSubmitHandler}>
             <label>User Name</label>
             <input

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { orderList, orderDelete } from '../../../actions/orderActions'
 import Loader from '../../../components/Loader'
 import { ContentMessage, Message } from '../../../components/Messages'
+import Meta from '../../../components/Meta'
 
 const OrderListPage = () => {
   const listOrder = useSelector((state) => state.orderList)
@@ -38,6 +39,7 @@ const OrderListPage = () => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='orderList_container'>
+        <Meta title={'All Orders'} />
         {loading && <Loader className='loader_container' />}
         {error && <Message className='danger'>{error}</Message>}
         {orders && (

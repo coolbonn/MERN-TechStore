@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { myOauthUserOrderList, orderDelete } from '../actions/orderActions'
 import { Message, ContentMessage } from '../components/Messages'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 
 const OauthUserProfilePage = () => {
   const userLogin = useSelector((state) => state.userLogin)
@@ -41,6 +42,7 @@ const OauthUserProfilePage = () => {
 
   return (
     <div className='oauthUser_container'>
+      <Meta title={`${userInfo.username}'s Profile`} />
       <div className='content'>
         <h1>{userInfo.username}</h1>
         <img src={userInfo.image} alt={userInfo.username} />

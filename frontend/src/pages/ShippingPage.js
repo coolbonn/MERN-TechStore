@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingAddress } from '../actions/cartActions'
+import { Message } from '../components/Messages'
+import Meta from '../components/Meta'
 
 const ShippingPage = ({ history }) => {
   const cart = useSelector((state) => state.cart)
@@ -13,10 +15,17 @@ const ShippingPage = ({ history }) => {
   const [postal, setPostal] = useState(shippingAddress.postal)
   const [address, setAddress] = useState(shippingAddress.address)
 
+  const [msg, setMsg] = useState('')
+
   const dispatch = useDispatch()
 
   const saveShippingAddressHandler = (e) => {
     e.preventDefault()
+
+    if (!country || !city || !street || !postal || !address) {
+      setMsg('Please Fill All the Fields!')
+      return
+    }
 
     dispatch(saveShippingAddress({ country, city, street, postal, address }))
     history.push('/p-method')
@@ -28,7 +37,9 @@ const ShippingPage = ({ history }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='shipping_container'>
+        <Meta title={'Shipping Credentials'} />
         <h1>Shipping Address</h1>
+        {msg && <Message className={'danger'}>{msg}</Message>}
         <form onSubmit={saveShippingAddressHandler}>
           <label>Country</label>
           <input

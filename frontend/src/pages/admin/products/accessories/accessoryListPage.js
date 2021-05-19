@@ -8,6 +8,7 @@ import {
   accessoriesList,
 } from '../../../../actions/accessoryActions'
 import { PaginateProduct } from '../../../../components/Paginate'
+import Meta from '../../../../components/Meta'
 
 const AccessoryListPage = ({ match }) => {
   const pageNumber = match.params.pageNumber
@@ -28,14 +29,15 @@ const AccessoryListPage = ({ match }) => {
 
   useEffect(() => {
     dispatch(accessoriesList('', '', '', pageNumber))
+
+    if (successDelete) {
+      window.location.reload()
+    }
   }, [dispatch, successDelete, pageNumber])
 
   const deleteAccHandler = (id) => {
     if (window.confirm('Are You Sure?')) {
       dispatch(accessoryDelete(id))
-      if (successDelete) {
-        window.location.reload()
-      }
     }
   }
 
@@ -53,6 +55,7 @@ const AccessoryListPage = ({ match }) => {
         </Link>
       </div>
       <div className='product_list_container'>
+        <Meta title={'All Accessories'} />
         {loadingDelete && <Loader />}
         {errorDelete && <Message className='danger'>{errorDelete}</Message>}
         {loading && <Loader className='loader_container' />}

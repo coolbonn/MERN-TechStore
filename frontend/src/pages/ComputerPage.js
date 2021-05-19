@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import { ContentMessage, Message } from '../components/Messages'
 import { ComputerSort } from '../components/ProductSort'
 import { PaginateProduct } from '../components/Paginate'
+import Meta from '../components/Meta'
 
 const ComputerPage = ({ match }) => {
   const sortBy = match.params.sortBy
@@ -28,6 +29,10 @@ const ComputerPage = ({ match }) => {
         products={computers}
         contentMsgClass={loading ? 'empty' : 'info'}
         text={'No Products!'}
+      />
+      <Meta
+        title={'Computers'}
+        content={'Choose computers that fit your needs'}
       />
       {loading && <Loader className='loader_container' />}
       {error && <Message className='danger'>{error}</Message>}

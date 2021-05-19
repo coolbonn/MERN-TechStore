@@ -7,6 +7,7 @@ import { ACCESSORY_CREATE_RESET } from '../../../../constants/productConstants'
 import { accessoryCreate } from '../../../../actions/accessoryActions'
 import ProductInput from '../../../../components/ProductInput'
 import { Link } from 'react-router-dom'
+import Meta from '../../../../components/Meta'
 
 const AccessoryCreate = ({ history }) => {
   const [name, setName] = useState('Test Name')
@@ -190,6 +191,7 @@ const AccessoryCreate = ({ history }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='create_product_container'>
+        <Meta title={'Create Accessories'} />
         {loading && <Loader />}
         {error && <Message className='danger'>{error}</Message>}
         <h2>Create Product</h2>

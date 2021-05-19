@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
 import { Message, TechDif } from '../components/Messages'
 import { recentProductList } from '../actions/recentProductActions'
+import Meta from '../components/Meta'
 
 const HomePage = () => {
   const recPrList = useSelector((state) => state.recentProduct)
@@ -17,6 +18,7 @@ const HomePage = () => {
 
   return (
     <div className='home_container'>
+      <Meta title={'Tech Store Home Page'} />
       <div className='banner'>
         <img
           src={

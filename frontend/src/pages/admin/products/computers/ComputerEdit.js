@@ -10,6 +10,7 @@ import Loader from '../../../../components/Loader'
 import { Message } from '../../../../components/Messages'
 import { COMPUTER_EDIT_RESET } from '../../../../constants/productConstants'
 import ProductInput from '../../../../components/ProductInput'
+import Meta from '../../../../components/Meta'
 
 const ComputerEdit = ({ history, match }) => {
   const compId = match.params.id
@@ -210,6 +211,7 @@ const ComputerEdit = ({ history, match }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='create_product_container'>
+        <Meta title={'Update Computer'} />
         {loading && <Loader />}
         {loadingEdit && <Loader />}
         {errorEdit && <Message className='danger'>{errorEdit}</Message>}

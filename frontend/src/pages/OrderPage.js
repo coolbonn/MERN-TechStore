@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder } from '../actions/orderActions'
+import Meta from '../components/Meta'
 
 const OrderPage = ({ history }) => {
   const cart = useSelector((state) => state.cart)
@@ -54,6 +55,9 @@ const OrderPage = ({ history }) => {
         <i className='fas fa-arrow-circle-left'></i>
       </Link>
       <div className='order_container'>
+        <Meta
+          title={`${cart.shippingAddress.country} || ${cart.paymentMethod}`}
+        />
         <div className='col_1'>
           <div className='shipping'>
             <h2>Shipping Address</h2>
