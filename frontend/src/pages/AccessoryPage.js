@@ -18,7 +18,6 @@ const AccessoryPage = ({ match }) => {
 
   const accList = useSelector((state) => state.accessories)
   const { loading, error, accessories, pages } = accList
-  console.log(accessories)
 
   useEffect(() => {
     dispatch(accessoriesList(sortBy, brand, keyword, pageNumber))

@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import AuthModal from './AuthModal'
 import UserDropdown from './UserDropdown'
-// import logo from '../../public/tech-logo.png'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
