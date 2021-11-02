@@ -185,6 +185,20 @@ header {
             font-size: $xs;
           }
         }
+
+        @media (max-width: 450px) {
+          padding: 1px 5px;
+
+          .signin {
+            margin-right: 5px;
+            font-size: $xs;
+          }
+
+          .signup,
+          .divider {
+            display: none;
+          }
+        }
       }
     }
   }
