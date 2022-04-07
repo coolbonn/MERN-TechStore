@@ -1,5 +1,5 @@
-# MERN-TechStore
-<h1>This is a <i>MERN Stack</i> e-commerce website for demo purposes</h1>
+<h1 aline="center">MERN-TechStore</>
+<h2>This is a <i>MERN Stack</i> e-commerce website for demo purposes</h2>
 <h3> SCSS for styling</h3>
 <h3>Redux for state management</h3>
 <h3>MongoDB as a database</h3>
