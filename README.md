@@ -1,4 +1,4 @@
-<h1 aline="center">MERN-TechStore</>
+<h1 align="center">MERN-TechStore</>
 <h2>This is a <i>MERN Stack</i> e-commerce website for demo purposes</h2>
 <h3> SCSS for styling</h3>
 <h3>Redux for state management</h3>
